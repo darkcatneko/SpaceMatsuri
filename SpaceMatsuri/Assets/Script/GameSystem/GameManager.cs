@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : ToSingletonMonoBehavior<GameManager>
 {
     public MainGameEvent M_MainGameEvent = new MainGameEvent();
-    [SerializeField] public PlayerDataManager M_PlayerDataManager = new PlayerDataManager();
+    public PlayerDataManager M_PlayerDataManager = new PlayerDataManager();
+    protected override void init()
+    {
+        M_PlayerDataManager.PlayerDataManagerInit();
+    }
     void Start()
     {
 

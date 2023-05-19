@@ -7,7 +7,12 @@ using UnityEngine;
 public class PlayerDataManager
 {
     [SerializeField]public InGamePlayerData M_InGamePlayerData;
-    private PlayerTempleteDataBase playerTempleteDataBase_ = new PlayerTempleteDataBase(); 
+    private PlayerTempleteDataBase playerTempleteDataBase_ = new PlayerTempleteDataBase();
+    public void PlayerDataManagerInit()
+    {
+        playerTempleteDataBase_.PlayerTempleteDataBaseInit();
+    }
+    
     public void PlayerDataInit(int initPlayerID)
     {
         M_InGamePlayerData = new InGamePlayerData(playerTempleteDataBase_.GetBasicPlayerDataByID(initPlayerID));
