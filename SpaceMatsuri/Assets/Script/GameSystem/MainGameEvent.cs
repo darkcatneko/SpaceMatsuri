@@ -6,4 +6,6 @@ using UnityEngine.Events;
 public class MainGameEvent
 {
     public UnityEvent GameStartEvent = new UnityEvent();
+
+    public UnityEvent<Vector3, float> PlayerMovement = new UnityEvent<Vector3, float>();
 }

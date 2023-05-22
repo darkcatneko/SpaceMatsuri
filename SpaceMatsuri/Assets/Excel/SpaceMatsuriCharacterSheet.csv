@@ -1,3 +1,4 @@
 Name,PlayerTemplete_ID,PlayerLevel,LevelBar,PlayerMovementSpeed,MaxHealthPoint,Now_PlayerHealthPoint,PlayerAttack,FeverTimeLastTime,Now_TensionBar,MatsuriTenshenChargeSpeed,AttackProjectileScale,AttackProjectileBasicCount,AttackFrequence
-Basic,1,0,0,2,100,0,5,5,0,1,1,1,1
-Double,2,0,0,2,100,0,5,5,0,1,1,1,1
+Basic,1,0,0,235,100,0,5,5,0,1,1,1,1
+Double,2,0,0,235,100,0,5,5,0,1,1,1,1
+Speed,3,0,0,255,100,0,5,5,0,1,1,1,1
