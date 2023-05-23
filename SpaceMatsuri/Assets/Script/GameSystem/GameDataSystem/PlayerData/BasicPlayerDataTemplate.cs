@@ -21,6 +21,7 @@ public class BasicPlayerDataTemplate
     [field: SerializeField] public float AttackProjectileScale { get; set; } = 1;
     [field: SerializeField] public int AttackProjectileBasicCount { get; set; } = 1;
     [field: SerializeField] public int AttackFrequence { get; set; } = 1;
+    [field: SerializeField] public string PlayerPrefabPath { get; set; } = "Prefab/matsuriPlayer";
 
     public BasicPlayerDataTemplate Clone()
     {
@@ -40,6 +41,7 @@ public class BasicPlayerDataTemplate
             AttackFrequence = AttackFrequence,
             AttackProjectileBasicCount = AttackProjectileBasicCount,
             AttackProjectileScale = AttackProjectileScale,
+            PlayerPrefabPath = PlayerPrefabPath,
         };
         //要複製的東西
         return clone;        

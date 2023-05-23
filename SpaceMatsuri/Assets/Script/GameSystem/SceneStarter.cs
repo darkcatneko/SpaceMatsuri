@@ -6,6 +6,6 @@ public class SceneStarter : MonoBehaviour
 {    
     void Start()
     {
-        GameManager.Instance.GameStart();
+        GameManager.Instance.GameInit();
     }       
 }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private CameraManager cameraManager_;
+    private GameObject playerObjectPrefab_;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        GameManager.Instance.M_MainGameEvent.GameInitEvent.AddListener(spawnPlayerPrefab);
     }
+    private async void spawnPlayerPrefab()
+    {
+        playerObjectPrefab_ = await AddressableSearcher.GetAddressableAssetAsync<GameObject>(GameManager.Instance.IngamePlayerData.PlayerPrefabPath);
+        var playerObject = Instantiate(playerObjectPrefab_, Vector3.zero, Quaternion.identity);
+        GameManager.Instance.PlayerObject = playerObject;
+        cameraManager_.PairPlayerObjectWithCamera();        
+    }
+    
 }

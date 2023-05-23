@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Excel/SpaceMatsuriCharacterSheet
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d3a38e42904bafc41a51f8026458bde5
+    m_Address: Prefab/matsuriPlayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d7f4ff2176b2f8345bede6a2223a05e0
+    m_Address: Excel/SpaceMatsuriMonsterSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:

@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 using System.Threading.Tasks;
 public class AddressableSearcher
 {
-    public static async Task<T> GetAddressableAsset<T>(string assetAddress)
+    public static async Task<T> GetAddressableAssetAsync<T>(string assetAddress)
     {
         var resultTask = Addressables.LoadAssetAsync<T>(assetAddress).Task;
         T result = await resultTask;
