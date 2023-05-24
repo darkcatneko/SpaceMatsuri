@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
@@ -46,12 +47,8 @@ public class BasicPlayerDataTemplate
         //要複製的東西
         return clone;        
     }
-    public BasicPlayerDataTemplate(string[] dataText)
-    {        
-        CSVClassGenerator.SetClassData(this, dataText);
-    }
     public BasicPlayerDataTemplate()
     {
 
-    }
+    }   
 }

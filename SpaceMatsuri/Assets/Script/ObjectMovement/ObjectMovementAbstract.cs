@@ -5,8 +5,8 @@ using UnityEngine;
 
 public abstract class ObjectMovementAbstract : MonoBehaviour
 {
-    private GameObject thisObject_;
-    private Rigidbody2D thisRigidbody_;
+    protected GameObject thisObject_;
+    protected Rigidbody2D thisRigidbody_;
     protected virtual void Start()
     {
         thisObject_ = this.gameObject;
@@ -19,6 +19,7 @@ public abstract class ObjectMovementAbstract : MonoBehaviour
     }
     protected virtual void ThisObjectMove(Vector3 direction, float speed)
     {
-        thisRigidbody_.velocity=(direction*speed * Time.deltaTime);
+        var objectRigibody = (direction * speed);
+        thisRigidbody_.velocity = objectRigibody;
     }
 }

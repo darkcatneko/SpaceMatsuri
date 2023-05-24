@@ -8,22 +8,25 @@ public class GameInitState : StateBase
     {
     }
 
-    public override void OnEnter()
+    public override async void OnEnter()
     {
-        Debug.Log("123");
+        var initializer = new GameObject();
+        var playerSpawner = initializer.AddComponent<PlayerSpawner>();
+        var enemySpawner = initializer.AddComponent<EnemySpawner>();
+        Debug.Log("GameIniting");
+        await playerSpawner.spawnPlayerPrefab();
+        await enemySpawner.monsterDataBaseInit();
+        Debug.Log("GameFinishIniting");
+        GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Start_State);
     }
 
     public override void OnExit()
     {
-        Debug.Log("GameFinishIniting");
+        
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("GameIniting");
-        if (GameManager.Instance.PlayerObject!=null)
-        {
-            GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Start_State);
-        }
+       
     }
 }

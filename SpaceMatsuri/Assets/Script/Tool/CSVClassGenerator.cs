@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class CSVClassGenerator
 {
 
-    public static T[] GenClassArrayByCSV<T>(TextAsset textAsset) where T : new()
+    public  static async Task<T[]> GenClassArrayByCSV<T>(TextAsset textAsset) where T : new()
     {               
         string[] data = textAsset.text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
         string[][] tempdata = new string[data.Length][];
@@ -21,12 +23,12 @@ public class CSVClassGenerator
         for (int i = 1; i < tempdata.Length; i++)
         {
             var result = new T();
-            SetClassData<T>(result, tempdata[i]);
+            await SetClassData<T>(result, tempdata[i]);
             resultArray[i-1] = result;
         }
         return resultArray;
     }
-    public static void SetClassData<T>(T DataBeSet, string[] dataText)
+    public static async Task SetClassData<T>(T DataBeSet, string[] dataText)
     {
         PropertyInfo[] propertyInfo = typeof(T).GetProperties();
         for (int i = 0; i < propertyInfo.Length; i++)
@@ -42,6 +44,22 @@ public class CSVClassGenerator
             else if (propertyInfo[i].PropertyType == typeof(float))
             {
                 propertyInfo[i].SetValue(DataBeSet, float.Parse(dataText[i]));
+            }
+            else if (propertyInfo[i].PropertyType == typeof(GameObject))
+            {
+                var gameobjectPrefab = await AddressableSearcher.GetAddressableAssetAsync<GameObject>(dataText[i]);
+                propertyInfo[i].SetValue(DataBeSet, gameobjectPrefab);
+            }
+            else if (propertyInfo[i].PropertyType == typeof(bool))
+            {
+                if (dataText[i].ToString()=="TRUE")
+                {
+                    propertyInfo[i].SetValue(DataBeSet, true);
+                }
+                else if (dataText[i].ToString() == "FALSE")
+                {
+                    propertyInfo[i].SetValue(DataBeSet, false);
+                }
             }
         }
     }

@@ -14,12 +14,13 @@ public class PlayerTempleteDataBase
     public async void ReadCsv()
     {
         var textAsset = await AddressableSearcher.GetAddressableAssetAsync<TextAsset>("Excel/SpaceMatsuriCharacterSheet");        
-        var classArray = CSVClassGenerator.GenClassArrayByCSV<BasicPlayerDataTemplate>(textAsset);
+        var classArray = await CSVClassGenerator.GenClassArrayByCSV<BasicPlayerDataTemplate>(textAsset);
         addDataIntoDataBase(classArray);
+        Debug.Log("");
     }      
     private void addDataIntoDataBase(BasicPlayerDataTemplate[] data)
     {
-        for (int i = 1; i < data.Length; i++)
+        for (int i = 0; i < data.Length; i++)
         {
             M_PlayerTempleteDataBase.Add(data[i]);
         }

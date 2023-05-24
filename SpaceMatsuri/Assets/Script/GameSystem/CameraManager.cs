@@ -7,9 +7,10 @@ using System;
 [Serializable]
 public class CameraManager
 {
-    [SerializeField]private CinemachineVirtualCamera _cam;
+    private CinemachineVirtualCamera _cam;
     public void PairPlayerObjectWithCamera()
     {
+        _cam = Camera.main.GetComponentInChildren<CinemachineVirtualCamera>();
         var playerObject = GameManager.Instance.PlayerObject;
         _cam.Follow = playerObject.transform;
         _cam.LookAt = playerObject.transform;

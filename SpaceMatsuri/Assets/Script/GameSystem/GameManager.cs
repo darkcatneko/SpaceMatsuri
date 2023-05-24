@@ -27,7 +27,6 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     {
         M_StageManager.StageManagerInit();
         M_MainGameEvent.GameInitEvent.Invoke();
-        Debug.Log("GameInit");
     }
     public void GameStart()
     {

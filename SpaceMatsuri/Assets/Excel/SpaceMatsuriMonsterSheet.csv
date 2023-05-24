@@ -1,2 +1,2 @@
 Name,MonsterTemplete_ID,MonsterLevel,MonsterMovementSpeed,MaxHealthPoint,Now_MonsterHealthPoint,MonsterAttack,MonsterPrefabPath
-Kapa,1,1,50,20,20,5,Prefab/Kapa
+Kapa,1,1,5,20,20,5,Prefab/Kapa

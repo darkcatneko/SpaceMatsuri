@@ -20,9 +20,6 @@ public class StageManager
 
 
         CurrentState.OnEnter();
-
-        
-
     }
     public void TransitionState(State_Enum type)
     {
@@ -64,7 +61,10 @@ public class StageManager
     }
     public void StageManagerUpdate()
     {
-        CurrentState.OnUpdate();
+        if (CurrentState != null)
+        {
+            CurrentState.OnUpdate();
+        }
     }
 }
 public struct StageData

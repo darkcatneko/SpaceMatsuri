@@ -1,24 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEditor.AddressableAssets.GUI;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     private MonsterTempleteDataBase monsterTempleteData = new MonsterTempleteDataBase();
+    private MonsterSpawningDataDataBase SpawnerDataBase = new MonsterSpawningDataDataBase();
+    private float monsterSpawnerTimer_ = 0;
     private void Start()
-    {
-        GameManager.Instance.M_MainGameEvent.GameInitEvent.AddListener(monsterDataBaseInit);
+    {      
         GameManager.Instance.M_MainGameEvent.GameStartEvent.AddListener(enemySpawnTest);
     }
-    private void monsterDataBaseInit()
+    public async Task monsterDataBaseInit()
     {
-        monsterTempleteData.ReadCsv();
+        await monsterTempleteData.ReadCsv();
+        await SpawnerDataBase.ReadCsv();
+    }
+    private void enemySpawnerFreeGameUpdateEvent()
+    {
+        if (gameStart_)
+        {
+
+        }
     }
 
-    private async void enemySpawnTest()
+    public void enemySpawnTest()
     {
-        var monsterPrefabPath = monsterTempleteData.GetMonsterDataByID(1).MonsterPrefabPath;
-        var gameobject = await AddressableSearcher.GetAddressableAssetAsync<GameObject>(monsterPrefabPath);
-        Instantiate(gameobject, Vector3.zero, Quaternion.identity);
+        var monsterPrefab = monsterTempleteData.GetMonsterDataByID(1).MonsterPrefab;       
+        var Enemy = Instantiate(monsterPrefab, new Vector3(0,5,0), Quaternion.identity);
+        Enemy.GetComponent<MonsterBehavior>().ThisMonsterData = monsterTempleteData.GetMonsterDataByID(1).Clone();
     }
 }

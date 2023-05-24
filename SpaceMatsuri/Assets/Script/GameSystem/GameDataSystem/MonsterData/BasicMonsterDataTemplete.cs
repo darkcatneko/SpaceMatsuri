@@ -13,7 +13,7 @@ public class BasicMonsterDataTemplete
     [field: SerializeField] public float MaxHealthPoint { get; set; } = 100;
     [field: SerializeField] public float Now_MonsterHealthPoint { get; set; }
     [field: SerializeField] public float MonsterAttack { get; set; } = 5;
-    [field: SerializeField] public string MonsterPrefabPath { get; set; } = "";
+    [field: SerializeField] public GameObject MonsterPrefab { get; set; }
     public BasicMonsterDataTemplete Clone()
     {
         var clone = new BasicMonsterDataTemplete()
@@ -25,17 +25,17 @@ public class BasicMonsterDataTemplete
             MaxHealthPoint = MaxHealthPoint,
             Now_MonsterHealthPoint = Now_MonsterHealthPoint,
             MonsterAttack = MonsterAttack,
-            MonsterPrefabPath = MonsterPrefabPath,
+            MonsterPrefab = MonsterPrefab,
         };
         //要複製的東西
         return clone;
     }
-    public BasicMonsterDataTemplete(string[] dataText)
-    {
-        CSVClassGenerator.SetClassData(this, dataText);
-    }
+    //public BasicMonsterDataTemplete(string[] dataText)
+    //{
+    //     CSVClassGenerator.SetClassData(this, dataText);
+    //}
     public BasicMonsterDataTemplete()
     {
 
-    }
+    }   
 }

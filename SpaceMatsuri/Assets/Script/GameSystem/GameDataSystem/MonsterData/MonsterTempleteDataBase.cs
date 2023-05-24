@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class MonsterTempleteDataBase
 {
     public List<BasicMonsterDataTemplete> M_MonsterTempleteDataBase = new List<BasicMonsterDataTemplete>();
-    public async void ReadCsv()
+    public async Task ReadCsv()
     {
         var textAsset = await AddressableSearcher.GetAddressableAssetAsync<TextAsset>("Excel/SpaceMatsuriMonsterSheet");
-        var classArray = CSVClassGenerator.GenClassArrayByCSV<BasicMonsterDataTemplete>(textAsset);
+        var classArray = await CSVClassGenerator.GenClassArrayByCSV<BasicMonsterDataTemplete>(textAsset);
         addDataIntoDataBase(classArray);
     }
     private void addDataIntoDataBase(BasicMonsterDataTemplete[] data)
     {
-        for (int i = 1; i < data.Length; i++)
+        for (int i = 0; i < data.Length; i++)
         {
             M_MonsterTempleteDataBase.Add(data[i]);
         }
