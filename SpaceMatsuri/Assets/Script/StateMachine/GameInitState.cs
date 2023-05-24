@@ -11,6 +11,7 @@ public class GameInitState : StateBase
     public override async void OnEnter()
     {
         var initializer = new GameObject();
+        initializer.name = "InitializedDataObject";
         var playerSpawner = initializer.AddComponent<PlayerSpawner>();
         var enemySpawner = initializer.AddComponent<EnemySpawner>();
         Debug.Log("GameIniting");

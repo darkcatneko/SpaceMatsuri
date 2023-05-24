@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: Prefab/Kapa
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c9da846ecb452294c925362719820679
+    m_Address: Excel/SpaceMatsuriMonsterSpawnDataSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:
