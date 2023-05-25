@@ -7,7 +7,7 @@ using UnityEngine;
 public class BasicMonsterDataTemplete
 {
     [field: SerializeField] public string Name { get; private set; } = "Basic";
-    [field: SerializeField] public int MonsterTemplete_ID { get; private set; } = 1;
+    [field: SerializeField] public int MonsterTemplete_ID { get; private set; } = 0;
     [field: SerializeField] public int MonsterLevel { get; set; } = 0;
     [field: SerializeField] public float MonsterMovementSpeed { get; set; } = 2;
     [field: SerializeField] public float MaxHealthPoint { get; set; } = 100;

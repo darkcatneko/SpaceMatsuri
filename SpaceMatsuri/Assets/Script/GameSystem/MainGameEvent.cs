@@ -9,4 +9,10 @@ public class MainGameEvent
     public UnityEvent GameInitEvent = new UnityEvent();
     public UnityEvent GameStartEvent = new UnityEvent();
     public UnityEvent<Vector3, float> PlayerMovement = new UnityEvent<Vector3, float>();
+
+    public UnityEvent MonsterBeenReleaseEvent = new UnityEvent();
+
+    public UnityEvent FreeGamePlayUpdateEvent = new UnityEvent();
+
+    public UnityEvent<Weapon,Transform> CallWeaponSpawn = new UnityEvent<Weapon, Transform>();
 }

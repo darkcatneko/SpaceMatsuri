@@ -18,10 +18,12 @@ public class EnemySpawner : MonoBehaviour
     private float monsterSpawnerTimer_ = 0;
     private int monsterInPlayableArea_ = 0;
     [Header("ObjectPools")]
-    private ObjectPoolClass monsterObjectPool = new ObjectPoolClass();
+    private ObjectPoolClass monsterObjectPool;
     private void Start()
     {
-        //GameManager.Instance.M_MainGameEvent.GameStartEvent.AddListener(enemySpawnTest);
+        monsterObjectPool = this.gameObject.AddComponent<ObjectPoolClass>();
+        GameManager.Instance.M_MainGameEvent.FreeGamePlayUpdateEvent.AddListener(enemySpawnerFreeGameUpdateEvent);
+        GameManager.Instance.M_MainGameEvent.MonsterBeenReleaseEvent.AddListener(releaseMonster);
     }
     public async Task monsterDataBaseInit()
     {
@@ -51,6 +53,13 @@ public class EnemySpawner : MonoBehaviour
         if (monsterInPlayableArea_ <= nowSpawningDataTemplete.MonsterShouldBeInArea)
         {
             var monsterId = getARandomMonsterIdByPhase();
+            var monsterPosition = getARandomSpawnPosition();
+            var monsterObject = spawnAObjectByMonsterId(monsterId, monsterPosition);
+            Debug.Log(monsterInPlayableArea_);
+        }
+        else
+        {
+            Debug.Log("FullOfMonster");
         }
     }
     private int getARandomMonsterIdByPhase()
@@ -62,26 +71,30 @@ public class EnemySpawner : MonoBehaviour
         if (nowSpawningDataTemplete.WillYukiSpawn) monsterPool.Add(4);
         if (nowSpawningDataTemplete.WillTenguSpawn) monsterPool.Add(5);
         if (nowSpawningDataTemplete.WillWheelSpawn) monsterPool.Add(6);
-        var result = UnityEngine.Random.Range(0, monsterPool.Count);
-        return result;
+        var randomResult = UnityEngine.Random.Range(0, monsterPool.Count);
+        return monsterPool[randomResult];
     }
-    private void spawnAObjectByMonsterId(int monsterId,Vector3 position)
+    private GameObject spawnAObjectByMonsterId(int monsterId, Vector3 position)
     {
         var monsterPrefab = monsterTempleteData.GetMonsterDataByID(monsterId).MonsterPrefab;
-        var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);
-        //加入物件池
-        //加入自毀器
+        var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
+        spawnedMonster.GetComponent<MonsterBehavior>().ThisMonsterData = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
+        var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
+        destroyer.Pool = monsterObjectPool;//加入自毀器
+        monsterInPlayableArea_++;
+        return spawnedMonster;
     }
-    private Vector3 randomASpawnPosition()
+    private Vector3 getARandomSpawnPosition()
     {
         var RightOrLeft = (rightOrleft)UnityEngine.Random.Range(0, 2);
         var randomY = UnityEngine.Random.Range(16f, -16f);
+        var playerPositionX = GameManager.Instance.PlayerObject.transform.position.x;
         switch (RightOrLeft)
         {
             case rightOrleft.right:
-                return new Vector3(32, randomY, 0);
+                return new Vector3(32+ playerPositionX, randomY, 0);
             case rightOrleft.left:
-                return new Vector3(-32, randomY, 0);
+                return new Vector3(-32+playerPositionX, randomY, 0);
         }
         return Vector3.zero;
     }
@@ -91,8 +104,12 @@ public class EnemySpawner : MonoBehaviour
     }
     private void changeSpawnerPhase()
     {
-        nowSpawnerPhase = Mathf.Clamp(nowSpawnerPhase++, 0, SpawnerDataBase.M_MonsterSpawningDataDataBase.Count);
+        nowSpawnerPhase = Mathf.Clamp(nowSpawnerPhase+=1, 0, SpawnerDataBase.M_MonsterSpawningDataDataBase.Count);
         nowSpawningDataTemplete = SpawnerDataBase.GetSpawnerDataByPhase(nowSpawnerPhase);
+    }
+    private void releaseMonster()
+    {
+        monsterInPlayableArea_ -= 1;
     }
     //public void enemySpawnTest()
     //{

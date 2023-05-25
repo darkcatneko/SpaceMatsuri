@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,9 @@ public class PlayerDataManager
 {
     [SerializeField]public InGamePlayerData M_InGamePlayerData;
     private PlayerTempleteDataBase playerTempleteDataBase_ = new PlayerTempleteDataBase();
+    public Weapon[] weaponPacks = new Weapon[3];
+    //呼叫所有武器
+
     public void PlayerDataManagerInit()
     {
         playerTempleteDataBase_.PlayerTempleteDataBaseInit();

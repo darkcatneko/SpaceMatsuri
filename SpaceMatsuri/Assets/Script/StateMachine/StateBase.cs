@@ -12,7 +12,7 @@ public abstract class StateBase
 
     public virtual void OnEnter()
     {
-
+        Debug.Log("EnterFreePlay");
     }
 
     public virtual void OnUpdate()

@@ -20,6 +20,6 @@ public class GameFreePlayState : StateBase
 
     public override void OnUpdate()
     {
-
+        GameManager.Instance.FreeGamePlayUpdater();
     }
 }

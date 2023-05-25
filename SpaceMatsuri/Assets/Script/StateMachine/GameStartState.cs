@@ -9,9 +9,9 @@ public class GameStartState : StateBase
     }
 
     public override void OnEnter()
-    {
-        
+    {        
         GameManager.Instance.GameStart();
+        GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_FreePlay_State);
     }
 
     public override void OnExit()

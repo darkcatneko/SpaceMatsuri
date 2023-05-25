@@ -37,6 +37,14 @@ MonoBehaviour:
     m_Address: Excel/SpaceMatsuriMonsterSpawnDataSheet
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1efbec0d0e1fef84798be726486e1eff
+    m_Address: Prefab/WaterGun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f99d2f8a6c312c942aa40aba64d64af8
+    m_Address: Excel/SpaceMatsuriWeaponSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:
