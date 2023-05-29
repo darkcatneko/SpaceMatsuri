@@ -17,7 +17,7 @@ public class BasicPlayerDataTemplate
     [field: SerializeField] public float Now_PlayerHealthPoint { get; set; }
     [field: SerializeField] public float PlayerAttack { get; set; } = 5;
     [field: SerializeField] public float FeverTimeLastTime { get; set; } = 5;
-    [field: SerializeField] public float Now_TensionBar { get; set; } = 0;
+    [field: SerializeField] public float Now_TensionBar { get; set; } = 0;//FeverBar
     [field: SerializeField] public float MatsuriTenshenChargeSpeed { get; set; } = 1;
     [field: SerializeField] public float AttackProjectileScale { get; set; } = 1;
     [field: SerializeField] public int AttackProjectileBasicCount { get; set; } = 1;

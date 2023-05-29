@@ -7,14 +7,16 @@ public class WeaponBehaviorBase : ObjectMovementAbstract
     public Weapon ThisProjectileData;
     public Transform FaceTarget;
     public Vector3 FowardDirection;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public bool IsBeenRelease = false;   
+    public void ReleaseThisObject()
     {
-        if (collision.CompareTag("Monster"))
+        if (!IsBeenRelease)
         {
-            this.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
+            this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             FaceTarget = null;
             FowardDirection = Vector3.zero;
+            IsBeenRelease = true;
             this.gameObject.GetComponent<PoolObjectDestroyer>().ReleaseThisObject();
-        }
+        }       
     }
 }

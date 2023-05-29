@@ -51,7 +51,10 @@ public class StageManager
                 return;
             case State_Enum.Game_FreePlay_State:
                 CurrentState = new GameFreePlayState(this);
-                return;                
+                return;
+            case State_Enum.Game_Fever_State:
+                CurrentState = new GameFeverState(this);
+                return;
         }
 
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class GameFreePlayState : StateBase
@@ -20,6 +21,10 @@ public class GameFreePlayState : StateBase
 
     public override void OnUpdate()
     {
-        GameManager.Instance.FreeGamePlayUpdater();
+        if (GameManager.Instance.IngamePlayerData.Now_TensionBar > 100)
+        {
+            GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Fever_State);
+        }
+        GameManager.Instance.FreeGamePlayUpdater();        
     }
 }

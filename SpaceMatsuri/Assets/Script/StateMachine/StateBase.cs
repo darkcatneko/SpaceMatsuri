@@ -27,5 +27,5 @@ public abstract class StateBase
 }
 public enum State_Enum
 {
-    Game_Init_State,Game_Start_State,Game_FreePlay_State,
+    Game_Init_State,Game_Start_State,Game_FreePlay_State,Game_Fever_State,
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class MonsterBehavior : ObjectMovementAbstract
 {
     public BasicMonsterDataTemplete ThisMonsterData;
+    public bool BeenRelease = false;
     private Vector3 getMonsterMoveDirection()
     {
         var direction = GameManager.Instance.PlayerObject.transform.position - this.gameObject.transform.position  ;
@@ -24,20 +26,38 @@ public class MonsterBehavior : ObjectMovementAbstract
     }
     private void releaseThisObject()
     {
-        var destroyer = this.gameObject.GetComponent<PoolObjectDestroyer>();
-        destroyer.ReleaseThisObject();
-        GameManager.Instance.ReleaseMonster();
+        if (!BeenRelease)
+        {
+            var destroyer = this.gameObject.GetComponent<PoolObjectDestroyer>();
+            destroyer.ReleaseThisObject();
+            BeenRelease = true;
+            GameManager.Instance.ReleaseMonster();
+        }
+       
     }
-    protected override void ThisObjectBeenAttack()
+    protected override void ThisObjectBeenAttack(float damage)
     {
-
+        ThisMonsterData.Now_MonsterHealthPoint = ThisMonsterData.Now_MonsterHealthPoint - damage;
+        Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
+        if (ThisMonsterData.Now_MonsterHealthPoint <= 0)
+        {
+            thisMonsterBeenKill();
+        }
+    }
+    private void thisMonsterBeenKill()
+    {
+        GameManager.Instance.IngamePlayerData.Now_TensionBar += 1 * GameManager.Instance.IngamePlayerData.MatsuriTenshenChargeSpeed;
+        releaseThisObject();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
-            var attackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData;
+            var attackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData.BasicAttack;
+            collision.GetComponent<WeaponBehaviorBase>().ReleaseThisObject();
+            ThisObjectBeenAttack(attackPower);
             Debug.Log("BeHit  " + attackPower);
         }
     }
+ 
 }

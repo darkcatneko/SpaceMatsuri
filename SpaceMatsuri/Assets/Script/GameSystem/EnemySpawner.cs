@@ -14,7 +14,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("SpawnerData")]
     [SerializeField]
     private MonsterSpawnerUsedSpawningDataTemplete nowSpawningDataTemplete;
+    [SerializeField]
     private int nowSpawnerPhase = 0;
+    [SerializeField]
     private float monsterSpawnerTimer_ = 0;
     private int monsterInPlayableArea_ = 0;
     [Header("ObjectPools")]
@@ -59,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("FullOfMonster");
+            //Debug.Log("FullOfMonster");
         }
     }
     private int getARandomMonsterIdByPhase()
@@ -78,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var monsterPrefab = monsterTempleteData.GetMonsterDataByID(monsterId).MonsterPrefab;
         var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
+        spawnedMonster.GetComponent<MonsterBehavior>().BeenRelease = false;
         spawnedMonster.GetComponent<MonsterBehavior>().ThisMonsterData = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
         var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
         destroyer.Pool = monsterObjectPool;//加入自毀器

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7093978063405843460}
   - component: {fileID: 4021358320050044219}
   - component: {fileID: 3167094082921901626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: kapa
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -156,6 +156,7 @@ MonoBehaviour:
     <Now_MonsterHealthPoint>k__BackingField: 0
     <MonsterAttack>k__BackingField: 5
     <MonsterPrefab>k__BackingField: {fileID: 0}
+  BeenRelease: 0
 --- !u!114 &3167094082921901626
 MonoBehaviour:
   m_ObjectHideFlags: 0

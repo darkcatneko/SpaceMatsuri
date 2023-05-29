@@ -7,12 +7,12 @@ using UnityEngine;
 public class InGamePlayerData
 {
     private BasicPlayerDataTemplate thisPlayerDataInit_;
-    [SerializeField] public BasicPlayerDataTemplate inGameUsedCurrentData;
+    [SerializeField] public BasicPlayerDataTemplate InGameUsedCurrentData;
 
     public InGamePlayerData(BasicPlayerDataTemplate basicPlayerDataTemplate)
     {
         thisPlayerDataInit_ = basicPlayerDataTemplate.Clone();
-        inGameUsedCurrentData = basicPlayerDataTemplate.Clone();
-        inGameUsedCurrentData.Now_PlayerHealthPoint = inGameUsedCurrentData.MaxHealthPoint;
+        InGameUsedCurrentData = basicPlayerDataTemplate.Clone();
+        InGameUsedCurrentData.Now_PlayerHealthPoint = InGameUsedCurrentData.MaxHealthPoint;
     }
 }
