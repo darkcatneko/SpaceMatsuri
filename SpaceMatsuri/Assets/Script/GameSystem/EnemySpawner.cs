@@ -111,6 +111,7 @@ public class EnemySpawner : MonoBehaviour
     {
         monsterInPlayableArea_ -= 1;
     }
+    
     //public void enemySpawnTest()
     //{
     //    var monsterPrefab = monsterTempleteData.GetMonsterDataByID(1).MonsterPrefab;       

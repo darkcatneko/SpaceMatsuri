@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7384372108621299837}
   - component: {fileID: 7807006918168474117}
   - component: {fileID: 8520842602408215726}
+  - component: {fileID: 8169464960538242714}
   m_Layer: 0
   m_Name: WaterGun
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2916522849902465685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.824074, y: 1.1952449, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -144,5 +145,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0be3f3ce6f86bf741896f7082105fc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FaceTarget: {fileID: 0}
+  FowardDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &8169464960538242714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916522849902465685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ec454e40f507643b1583e83cdb88ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

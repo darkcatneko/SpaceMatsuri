@@ -28,4 +28,16 @@ public class MonsterBehavior : ObjectMovementAbstract
         destroyer.ReleaseThisObject();
         GameManager.Instance.ReleaseMonster();
     }
+    protected override void ThisObjectBeenAttack()
+    {
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Weapon"))
+        {
+            var attackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData;
+            Debug.Log("BeHit  " + attackPower);
+        }
+    }
 }

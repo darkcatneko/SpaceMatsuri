@@ -39,15 +39,15 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     public void FreeGamePlayUpdater()
     {
         M_MainGameEvent.FreeGamePlayUpdateEvent.Invoke();
-        //執行生成指令一次
+        M_PlayerDataManager.CheckAllAllWeaponCoolDown();
     }
     public void ReleaseMonster()
     {
         M_MainGameEvent.MonsterBeenReleaseEvent.Invoke();
     }
-    public void CallWeaponSpawn(Weapon weapon, Transform targetTransform)
+    public void CallWeaponSpawn(Weapon weapon)
     {
-        M_MainGameEvent.CallWeaponSpawn.Invoke(weapon,targetTransform);
+        M_MainGameEvent.CallWeaponSpawn.Invoke(weapon);
     }
     #endregion
     

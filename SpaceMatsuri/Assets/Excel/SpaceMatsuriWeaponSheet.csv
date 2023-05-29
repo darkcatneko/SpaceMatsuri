@@ -1,2 +1,2 @@
 Name,Id,NowLevel,MovementSpeed,BasicAttack,BasicProjectileScale,BasicProjectileBasicCount,AttackFrequence,WeaponPrefabPath,NextFireTime
-WaterGun,1,1,5,10,1,1,2,Prefab/WaterGun,0
+WaterGun,1,1,35,10,1,1,2,Prefab/WaterGun,0

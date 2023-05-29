@@ -14,5 +14,5 @@ public class MainGameEvent
 
     public UnityEvent FreeGamePlayUpdateEvent = new UnityEvent();
 
-    public UnityEvent<Weapon,Transform> CallWeaponSpawn = new UnityEvent<Weapon, Transform>();
+    public UnityEvent<Weapon> CallWeaponSpawn = new UnityEvent<Weapon>();
 }

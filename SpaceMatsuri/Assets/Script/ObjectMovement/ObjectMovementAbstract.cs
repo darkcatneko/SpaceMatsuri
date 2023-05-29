@@ -22,4 +22,8 @@ public abstract class ObjectMovementAbstract : MonoBehaviour
         var objectRigibody = (direction * speed);
         thisRigidbody_.velocity = objectRigibody;
     }
+    protected virtual void ThisObjectBeenAttack()
+    {
+
+    }
 }
