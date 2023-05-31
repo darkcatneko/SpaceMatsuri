@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainGameUIManager : MonoBehaviour
 {
     [SerializeField] UIBarScript TensionBarUI;
+    [SerializeField] GameObject FeverTimerObject;
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.TensionBarChangeEvent.AddListener(updateTenshinBar);   

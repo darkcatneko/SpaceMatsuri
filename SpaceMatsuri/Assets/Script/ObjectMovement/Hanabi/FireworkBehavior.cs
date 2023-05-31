@@ -41,7 +41,7 @@ public class FireworkBehavior : WeaponBehaviorBase
     {
         playHanabiAnimation();
         //找到所有怪物 然後扁他
-        var monsterInRange = FindMonsters();
+           var monsterInRange = FindMonsters();
         foreach (var monster in monsterInRange)
         {
             monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999,true);
