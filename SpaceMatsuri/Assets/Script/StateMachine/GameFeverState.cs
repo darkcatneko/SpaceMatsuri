@@ -19,8 +19,8 @@ public class GameFeverState : StateBase
 
     public override void OnExit()
     {
-        excuteAllMonster();
-        GameManager.Instance.IngamePlayerData.Now_TensionBar = 0;
+        excuteAllMonster();        
+        GameManager.Instance.ChangePlayerTension(0);
         Debug.Log("Out Fever");
         GameManager.Instance.ExitFeverTime();
     }
@@ -41,9 +41,5 @@ public class GameFeverState : StateBase
         {
             monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999,false);
         }
-    }
-    private void spawnAKitsunePartical()
-    {
-        
     }
 }

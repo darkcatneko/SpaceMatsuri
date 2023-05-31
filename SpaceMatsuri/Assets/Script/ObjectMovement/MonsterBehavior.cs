@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MonsterBehavior : ObjectMovementAbstract
 {
-    public BasicMonsterDataTemplete ThisMonsterData;
+    private BasicMonsterDataTemplete ThisMonsterData;
     public bool BeenRelease = false;
     private Vector3 getMonsterMoveDirection()
     {
@@ -46,7 +46,8 @@ public class MonsterBehavior : ObjectMovementAbstract
     }
     private void thisMonsterBeenKill(bool canDropLoot)
     {
-        GameManager.Instance.IngamePlayerData.Now_TensionBar += 1 * GameManager.Instance.IngamePlayerData.MatsuriTenshenChargeSpeed;
+        var resultFeverBarValue = GameManager.Instance.IngamePlayerData.Now_TensionBar + 1 * GameManager.Instance.IngamePlayerData.MatsuriTenshenChargeSpeed;
+        GameManager.Instance.ChangePlayerTension(resultFeverBarValue);
         releaseThisObject();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,5 +64,9 @@ public class MonsterBehavior : ObjectMovementAbstract
             collision.GetComponent<FireworkBehavior>().ReleaseThisObject();
         }
     }
- 
+    public void InitMonsterData(BasicMonsterDataTemplete target)
+    {
+        BeenRelease = false;
+        ThisMonsterData = target;
+    }
 }

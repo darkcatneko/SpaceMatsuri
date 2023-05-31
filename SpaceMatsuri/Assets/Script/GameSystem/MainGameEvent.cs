@@ -23,4 +23,6 @@ public class MainGameEvent
     public UnityEvent ExitFeverTimeEvent = new UnityEvent();
 
     public UnityEvent<Weapon> CallWeaponSpawn = new UnityEvent<Weapon>();
+
+    public UnityEvent<float> TensionBarChangeEvent = new UnityEvent<float>();
 }

@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
         movementInputer();
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GameManager.Instance.IngamePlayerData.Now_TensionBar = 99;
+            GameManager.Instance.ChangePlayerTension(99);
         }
     }
     private void movementInputer()

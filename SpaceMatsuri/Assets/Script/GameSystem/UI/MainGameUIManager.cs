@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class MainGameUIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] UIBarScript TensionBarUI;
+    private void Start()
     {
-        
+        GameManager.Instance.M_MainGameEvent.TensionBarChangeEvent.AddListener(updateTenshinBar);   
     }
-
-    // Update is called once per frame
-    void Update()
+    private void updateTenshinBar(float result)
     {
-        
+        TensionBarUI.UpdateValue( Mathf.RoundToInt(result), 100);
     }
 }

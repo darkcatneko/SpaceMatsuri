@@ -30,10 +30,6 @@ public class BasicMonsterDataTemplete
         //要複製的東西
         return clone;
     }
-    //public BasicMonsterDataTemplete(string[] dataText)
-    //{
-    //     CSVClassGenerator.SetClassData(this, dataText);
-    //}
     public BasicMonsterDataTemplete()
     {
 

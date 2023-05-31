@@ -5894,6 +5894,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 761079998}
     m_Modifications:
+    - target: {fileID: 6884723136420484783, guid: e2ada02cb174d2d47962c712be6bd1c6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884723136420484783, guid: e2ada02cb174d2d47962c712be6bd1c6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884723136420484783, guid: e2ada02cb174d2d47962c712be6bd1c6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884723136420484783, guid: e2ada02cb174d2d47962c712be6bd1c6, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6884723137405048969, guid: e2ada02cb174d2d47962c712be6bd1c6, type: 3}
       propertyPath: m_Name
       value: DriveBar1

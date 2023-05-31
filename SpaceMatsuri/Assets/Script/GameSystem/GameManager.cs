@@ -66,5 +66,10 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
         M_MainGameEvent.ExitFeverTimeEvent.Invoke();
     }
     #endregion
+    public void ChangePlayerTension(float result)
+    {
+        IngamePlayerData.Now_TensionBar = result;
+        M_MainGameEvent.TensionBarChangeEvent.Invoke(IngamePlayerData.Now_TensionBar);
+    }
     
 }

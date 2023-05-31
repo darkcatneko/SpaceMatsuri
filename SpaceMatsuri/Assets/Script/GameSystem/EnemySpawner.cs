@@ -83,8 +83,8 @@ public class EnemySpawner : MonoBehaviour
     {
         var monsterPrefab = monsterTempleteData.GetMonsterDataByID(monsterId).MonsterPrefab;
         var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
-        spawnedMonster.GetComponent<MonsterBehavior>().BeenRelease = false;
-        spawnedMonster.GetComponent<MonsterBehavior>().ThisMonsterData = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
+        //spawnedMonster.GetComponent<MonsterBehavior>().BeenRelease = false;
+        spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(monsterTempleteData.GetMonsterDataByID(monsterId).Clone());
         var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
         destroyer.Pool = monsterObjectPool;//加入自毀器
         monsterInPlayableArea_++;
