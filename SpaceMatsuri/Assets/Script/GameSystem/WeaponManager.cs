@@ -110,6 +110,7 @@ public class WeaponManager : MonoBehaviour
     private void callSpawnKitsunePartical()
     {
         var obj = Instantiate(kitsunePrefab_, GameManager.Instance.PlayerObject.transform.position, quaternion.identity);
+        obj.transform.parent = Camera.main.gameObject.transform;
         var destroyer = obj.GetComponent<PoolObjectDestroyer>();
         destroyer.StartDestroyTimer(1.5f);
     }

@@ -1,4 +1,4 @@
 Name,PlayerTemplete_ID,PlayerLevel,LevelBar,PlayerMovementSpeed,MaxHealthPoint,Now_PlayerHealthPoint,PlayerAttack,FeverTimeLastTime,Now_TensionBar,MatsuriTenshenChargeSpeed,AttackProjectileScale,AttackProjectileBasicCount,AttackFrequence,PlayerPrefabPath
 Basic,1,0,0,15,100,0,5,5,0,1,1,1,1,Prefab/matsuriPlayer
-Double,2,0,0,15,100,0,5,5,0,1,1,1,1,Prefab/matsuriPlayer
+Double,2,0,0,15,100,0,5,10,0,1,1,1,1,Prefab/matsuriPlayer
 Speed,3,0,0,23,100,0,5,5,0,1,1,1,1,Prefab/matsuriPlayer
