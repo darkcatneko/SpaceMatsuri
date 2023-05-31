@@ -26,6 +26,9 @@ public class EnemySpawner : MonoBehaviour
         monsterObjectPool = this.gameObject.AddComponent<ObjectPoolClass>();
         GameManager.Instance.M_MainGameEvent.FreeGamePlayUpdateEvent.AddListener(enemySpawnerFreeGameUpdateEvent);
         GameManager.Instance.M_MainGameEvent.MonsterBeenReleaseEvent.AddListener(releaseMonster);
+        GameManager.Instance.M_MainGameEvent.EnterFeverTimeEvent.AddListener(intoFeverTime);
+        GameManager.Instance.M_MainGameEvent.ExitFeverTimeEvent.AddListener(outFeverTime);
+        GameManager.Instance.M_MainGameEvent.FeverTimeOnUpdateEvent.AddListener(enemySpawnerFeverTimeUpdateEvent);
     }
     public async Task monsterDataBaseInit()
     {
@@ -110,16 +113,28 @@ public class EnemySpawner : MonoBehaviour
         nowSpawnerPhase = Mathf.Clamp(nowSpawnerPhase+=1, 0, SpawnerDataBase.M_MonsterSpawningDataDataBase.Count);
         nowSpawningDataTemplete = SpawnerDataBase.GetSpawnerDataByPhase(nowSpawnerPhase);
     }
+    #region FeverTimeEnemySpawner
+    private void intoFeverTime()
+    {
+        var feverSpawnData = SpawnerDataBase.GetSpawnerDataByPhase(nowSpawnerPhase).Clone();
+        feverSpawnData.MonsterShouldBeInArea = 300;
+        feverSpawnData.HowManyMonsterAFrame = 20;
+        nowSpawningDataTemplete = feverSpawnData.Clone();
+    }
+    private void outFeverTime()
+    {
+        nowSpawningDataTemplete = SpawnerDataBase.GetSpawnerDataByPhase(nowSpawnerPhase).Clone();
+    }
+    private void enemySpawnerFeverTimeUpdateEvent()
+    {       
+        for (int i = 0; i < nowSpawningDataTemplete.HowManyMonsterAFrame; i++)
+        {
+            checkIfNeedToSpawnNewMonster();
+        }
+    }
+    #endregion
     private void releaseMonster()
     {
         monsterInPlayableArea_ -= 1;
     }
-    
-    //public void enemySpawnTest()
-    //{
-    //    var monsterPrefab = monsterTempleteData.GetMonsterDataByID(1).MonsterPrefab;       
-    //    var Enemy = Instantiate(monsterPrefab, new Vector3(0,5,0), Quaternion.identity);
-    //    Enemy.GetComponent<MonsterBehavior>().ThisMonsterData = monsterTempleteData.GetMonsterDataByID(1).Clone();
-    //}
-
 }

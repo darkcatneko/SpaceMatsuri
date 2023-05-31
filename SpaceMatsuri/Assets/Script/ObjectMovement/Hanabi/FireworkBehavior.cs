@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,16 +25,36 @@ public class FireworkBehavior : WeaponBehaviorBase
 
         return monsters;
     }
+    [SerializeField] private GameObject Hanabi;
+    public ObjectPoolClass HanabiParticalPool;
     public void TargetLock(Transform monster)
     {
         IsBeenRelease = false;
+        gameObject.transform.DetachChildren();
         FowardDirection = (monster.position - this.gameObject.transform.position).normalized;
     }
     private void Update()
     {
         ThisObjectMove(FowardDirection, ThisProjectileData.MovementSpeed);
     }
-
+    public override void ReleaseThisObject()
+    {
+        playHanabiAnimation();
+        //找到所有怪物 然後扁他
+        var monsterInRange = FindMonsters();
+        foreach (var monster in monsterInRange)
+        {
+            monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999,true);
+        }
+        base.ReleaseThisObject();
+    }
+    public void playHanabiAnimation()
+    {
+        var hanabiPartical = HanabiParticalPool.GetGameObject(Hanabi, gameObject.transform.position, Quaternion.identity);
+        hanabiPartical.GetComponent<ParticleSystem>().Play();
+        var destroyer = hanabiPartical.GetComponent<PoolObjectDestroyer>();
+        destroyer.StartDestroyTimer(1.5f);
+    }
     // 在場景中繪製圓形範圍以進行視覺化
     private void OnDrawGizmosSelected()
     {

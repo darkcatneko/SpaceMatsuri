@@ -45,6 +45,14 @@ MonoBehaviour:
     m_Address: Excel/SpaceMatsuriWeaponSheet
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0cc0784845dd9154192c0a749ad4f083
+    m_Address: Prefab/HanabiTama
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 95c1e366b3be3d04aaa5adc87eb4d1b5
+    m_Address: Prefab/KitsunePartical
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:

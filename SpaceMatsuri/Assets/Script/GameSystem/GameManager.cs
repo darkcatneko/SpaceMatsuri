@@ -45,10 +45,26 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     {
         M_MainGameEvent.MonsterBeenReleaseEvent.Invoke();
     }
+    public void FeverStateUpdateFunction()
+    {
+        M_MainGameEvent.FeverTimeOnUpdateEvent.Invoke();
+    }
+    public void CallSpawnFirework()
+    {
+        M_MainGameEvent.CallFireworkSpawnEvent.Invoke();
+    }
     public void CallWeaponSpawn(Weapon weapon)
     {
         M_MainGameEvent.CallWeaponSpawn.Invoke(weapon);
-    }       
+    }
+    public void EnterFevertime()
+    {
+        M_MainGameEvent.EnterFeverTimeEvent.Invoke();
+    }
+    public void ExitFeverTime()
+    {
+        M_MainGameEvent.ExitFeverTimeEvent.Invoke();
+    }
     #endregion
     
 }

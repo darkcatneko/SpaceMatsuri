@@ -35,16 +35,16 @@ public class MonsterBehavior : ObjectMovementAbstract
         }
        
     }
-    protected override void ThisObjectBeenAttack(float damage)
+    public override void ThisObjectBeenAttack(float damage,bool canDropLoot)
     {
         ThisMonsterData.Now_MonsterHealthPoint = ThisMonsterData.Now_MonsterHealthPoint - damage;
         Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
         if (ThisMonsterData.Now_MonsterHealthPoint <= 0)
         {
-            thisMonsterBeenKill();
+            thisMonsterBeenKill(canDropLoot);
         }
     }
-    private void thisMonsterBeenKill()
+    private void thisMonsterBeenKill(bool canDropLoot)
     {
         GameManager.Instance.IngamePlayerData.Now_TensionBar += 1 * GameManager.Instance.IngamePlayerData.MatsuriTenshenChargeSpeed;
         releaseThisObject();
@@ -55,8 +55,12 @@ public class MonsterBehavior : ObjectMovementAbstract
         {
             var attackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData.BasicAttack;
             collision.GetComponent<WeaponBehaviorBase>().ReleaseThisObject();
-            ThisObjectBeenAttack(attackPower);
+            ThisObjectBeenAttack(attackPower,true);
             Debug.Log("BeHit  " + attackPower);
+        }
+        if (collision.gameObject.CompareTag("Hanabi"))
+        {
+            collision.GetComponent<FireworkBehavior>().ReleaseThisObject();
         }
     }
  

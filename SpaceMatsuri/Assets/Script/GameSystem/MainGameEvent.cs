@@ -14,5 +14,13 @@ public class MainGameEvent
 
     public UnityEvent FreeGamePlayUpdateEvent = new UnityEvent();
 
+    public UnityEvent FeverTimeOnUpdateEvent = new UnityEvent();
+    
+    public UnityEvent CallFireworkSpawnEvent = new UnityEvent();
+
+    public UnityEvent EnterFeverTimeEvent = new UnityEvent();
+
+    public UnityEvent ExitFeverTimeEvent = new UnityEvent();
+
     public UnityEvent<Weapon> CallWeaponSpawn = new UnityEvent<Weapon>();
 }

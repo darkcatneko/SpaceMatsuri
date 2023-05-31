@@ -583,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   M_PlayerDataManager:
     M_InGamePlayerData:
-      inGameUsedCurrentData:
+      InGameUsedCurrentData:
         <Name>k__BackingField: Basic
         <PlayerTemplete_ID>k__BackingField: 1
         <PlayerLevel>k__BackingField: 0
@@ -593,11 +593,13 @@ MonoBehaviour:
         <Now_PlayerHealthPoint>k__BackingField: 0
         <PlayerAttack>k__BackingField: 5
         <FeverTimeLastTime>k__BackingField: 5
-        <Now_TensionBar>k__BackingField: 0
+        <Now_TensionBar>k__BackingField: 99
         <MatsuriTenshenChargeSpeed>k__BackingField: 1
         <AttackProjectileScale>k__BackingField: 1
         <AttackProjectileBasicCount>k__BackingField: 1
         <AttackFrequence>k__BackingField: 1
+        <PlayerPrefabPath>k__BackingField: Prefab/matsuriPlayer
+  PlayerObject: {fileID: 0}
 --- !u!1 &777911249
 GameObject:
   m_ObjectHideFlags: 0

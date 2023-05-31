@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class FeverTimeSystem : MonoBehaviour
 {
-    private void Start()
+    private GameObject hanabiPrefab;
+    private async void Start()
     {
-        
+        hanabiPrefab = await AddressableSearcher.GetAddressableAssetAsync<GameObject>("Prefab/HanabiTama");
     }
     private void shootHanabi()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
+            
         }
     }
 }

@@ -9,16 +9,26 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     private WeaponDataBase weaponDataBase = new WeaponDataBase();
-    public ObjectPoolClass waterGunPool;
+    public ObjectPoolClass WaterGunPool;
+    public ObjectPoolClass HanabiPool;
+    public ObjectPoolClass HanabiParticalPool;
+    private GameObject hanabiPrefab_;
+    private GameObject kitsunePrefab_;
     public async Task WeaponManagerInit()
     {
         await weaponDataBase.ReadCsv();
-        waterGunPool = this.gameObject.AddComponent<ObjectPoolClass>();
+        WaterGunPool = this.gameObject.AddComponent<ObjectPoolClass>();
+        HanabiPool = this.gameObject.AddComponent<ObjectPoolClass>();
+        HanabiParticalPool = this.gameObject.AddComponent<ObjectPoolClass>();
+        hanabiPrefab_ = await AddressableSearcher.GetAddressableAssetAsync<GameObject>("Prefab/HanabiTama");
+        kitsunePrefab_ = await AddressableSearcher.GetAddressableAssetAsync<GameObject>("Prefab/KitsunePartical");
     }
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.CallWeaponSpawn.AddListener(TrySpawnWeapon);
         GameManager.Instance.M_MainGameEvent.GameStartEvent.AddListener(TestAddWeaponToPlayer);
+        GameManager.Instance.M_MainGameEvent.CallFireworkSpawnEvent.AddListener(SpawnHanabiTama);
+        GameManager.Instance.M_MainGameEvent.ExitFeverTimeEvent.AddListener(callSpawnKitsunePartical);
     }
     public async void TrySpawnWeapon(Weapon weapon)
     {
@@ -47,32 +57,65 @@ public class WeaponManager : MonoBehaviour
         var waterGunPrefab = weapon.WeaponPrefab;
         var randomSpawnPoint = new Vector3(UnityEngine.Random.Range(0.5f, 2), UnityEngine.Random.Range(0.5f, 2), 0);
         var spawnPoint = randomSpawnPoint + originPoint;
-        var waterGunObject = waterGunPool.GetGameObject(waterGunPrefab, spawnPoint, Quaternion.identity);
+        var waterGunObject = WaterGunPool.GetGameObject(waterGunPrefab, spawnPoint, Quaternion.identity);
         var waterGunMover = waterGunObject.GetComponent<WaterGunProjectileMovement>();
-        var target = GetANearestMonster();
         waterGunMover.ThisProjectileData = weaponDataBase.GetWeaponByID(1).Clone();
+        var target = GetANearestMonster();
         waterGunMover.TargetLock(target);
         var destroyer = waterGunObject.GetComponent<PoolObjectDestroyer>();
-        destroyer.Pool = waterGunPool;//加入自毀器
+        destroyer.Pool = WaterGunPool;//加入自毀器
         
     }
-    public static Transform GetANearestMonster()
+    public void SpawnHanabiTama()
+    {
+        Debug.Log("call prefab");
+        var spawnPoint = GameManager.Instance.PlayerObject.transform.position;
+        var hanabiObject = HanabiPool.GetGameObject(hanabiPrefab_, spawnPoint, Quaternion.identity);
+        if (!hanabiObject.activeSelf)
+        {
+            Debug.LogError("U sure?");
+        }
+        var hanabiMover = hanabiObject.GetComponent<FireworkBehavior>();
+        hanabiMover.HanabiParticalPool = HanabiParticalPool;
+        hanabiMover.ThisProjectileData = weaponDataBase.GetWeaponByID(99).Clone();
+        var target = GetANearestMonster();
+        hanabiMover.TargetLock(target);
+        var destroyer = hanabiObject.GetComponent<PoolObjectDestroyer>();
+        destroyer.Pool = HanabiPool;//加入自毀器
+    }
+    public Transform GetANearestMonster()
     {
         var nearesrDistance = 100f;
         var allMonster = GameObject.FindGameObjectsWithTag("Monster");
-        var targerTransform = allMonster[0].transform;
-        for (int i = 0; i < allMonster.Length; i++)
+        if (allMonster.Length>0)
         {
-            if ((allMonster[i].transform.position - GameManager.Instance.PlayerObject.transform.position).magnitude < nearesrDistance)
+            var targerTransform = allMonster[0].transform;
+            for (int i = 0; i < allMonster.Length; i++)
             {
-                targerTransform = allMonster[i].transform;
-                nearesrDistance = (allMonster[i].transform.position - GameManager.Instance.PlayerObject.transform.position).magnitude;
+                if ((allMonster[i].transform.position - GameManager.Instance.PlayerObject.transform.position).magnitude < nearesrDistance)
+                {
+                    targerTransform = allMonster[i].transform;
+                    nearesrDistance = (allMonster[i].transform.position - GameManager.Instance.PlayerObject.transform.position).magnitude;
+                }
             }
+            return targerTransform;
         }
-        return targerTransform;
+        else
+        {
+            var gameobject = new GameObject();
+            return gameobject.transform;
+        }
+        
+    }
+    private void callSpawnKitsunePartical()
+    {
+        var obj = Instantiate(kitsunePrefab_, GameManager.Instance.PlayerObject.transform.position, quaternion.identity);
+        var destroyer = obj.GetComponent<PoolObjectDestroyer>();
+        destroyer.StartDestroyTimer(1.5f);
     }
     public void TestAddWeaponToPlayer()
     {
         GameManager.Instance.M_PlayerDataManager.WeaponPacks.Add(weaponDataBase.GetWeaponByID(1).Clone());
     }
+   
 }

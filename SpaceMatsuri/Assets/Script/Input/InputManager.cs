@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    private void Start()
+    {
+        GameManager.Instance.M_MainGameEvent.FeverTimeOnUpdateEvent.AddListener(FireworkInputer);
+    }
     void Update()
     {
         movementInputer();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameManager.Instance.IngamePlayerData.Now_TensionBar = 99;
+        }
     }
     private void movementInputer()
     {
@@ -16,6 +24,14 @@ public class InputManager : MonoBehaviour
         {
             var inputDir = new Vector3(horizontalInput, verticalInput, 0);
             GameManager.Instance.PlayerMovement(inputDir, GameManager.Instance.IngamePlayerData.PlayerMovementSpeed);
+        }
+    }
+    private void FireworkInputer()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Fire!!!");
+            GameManager.Instance.CallSpawnFirework();
         }
     }
 }

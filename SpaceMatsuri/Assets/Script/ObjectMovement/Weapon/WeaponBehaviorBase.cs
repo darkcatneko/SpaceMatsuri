@@ -8,7 +8,7 @@ public class WeaponBehaviorBase : ObjectMovementAbstract
     public Transform FaceTarget;
     public Vector3 FowardDirection;
     public bool IsBeenRelease = false;   
-    public void ReleaseThisObject()
+    public virtual void ReleaseThisObject()
     {
         if (!IsBeenRelease)
         {
