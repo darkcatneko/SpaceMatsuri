@@ -64,6 +64,24 @@ public class MonsterBehavior : ObjectMovementAbstract
             collision.GetComponent<FireworkBehavior>().ReleaseThisObject();
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    Debug.Log("PlayerBeHit  " + ThisMonsterData.MonsterAttack);
+        //    ThisObjectBeenAttack(ThisMonsterData.Now_MonsterHealthPoint, true);
+        //}
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("PlayerBeHit  " + ThisMonsterData.MonsterAttack);
+            GameManager.Instance.PlayerGetDamage(ThisMonsterData.MonsterAttack);
+            ThisObjectBeenAttack(ThisMonsterData.MonsterAttack, true);
+            //ThisObjectBeenAttack(ThisMonsterData.Now_MonsterHealthPoint, true);
+        }
+    }
     public void InitMonsterData(BasicMonsterDataTemplete target)
     {
         BeenRelease = false;

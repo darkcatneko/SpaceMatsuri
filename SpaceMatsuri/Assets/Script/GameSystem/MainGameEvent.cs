@@ -25,4 +25,6 @@ public class MainGameEvent
     public UnityEvent<Weapon> CallWeaponSpawn = new UnityEvent<Weapon>();
 
     public UnityEvent<float> TensionBarChangeEvent = new UnityEvent<float>();
+
+    public UnityEvent MonsterBeenKillByFireworkEvent = new UnityEvent();
 }

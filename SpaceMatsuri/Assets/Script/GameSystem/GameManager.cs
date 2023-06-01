@@ -71,5 +71,12 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
         IngamePlayerData.Now_TensionBar = result;
         M_MainGameEvent.TensionBarChangeEvent.Invoke(IngamePlayerData.Now_TensionBar);
     }
-    
+    public void MonsterBeenKilledByFirework()
+    {
+        M_MainGameEvent.MonsterBeenKillByFireworkEvent.Invoke();
+    }
+    public void PlayerGetDamage(float damage)
+    {
+        IngamePlayerData.Now_PlayerHealthPoint -= damage;
+    }
 }

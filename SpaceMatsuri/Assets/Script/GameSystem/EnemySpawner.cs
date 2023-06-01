@@ -67,6 +67,20 @@ public class EnemySpawner : MonoBehaviour
             //Debug.Log("FullOfMonster");
         }
     }
+    private void checkIfNeedToSpawnNewFasterMonster()
+    {
+        if (monsterInPlayableArea_ <= nowSpawningDataTemplete.MonsterShouldBeInArea)
+        {
+            var monsterId = getARandomMonsterIdByPhase();
+            var monsterPosition = getARandomSpawnPosition();
+            var monsterObject = spawnAFasterObjectByMonsterId(monsterId, monsterPosition);
+            Debug.Log(monsterInPlayableArea_);
+        }
+        else
+        {
+            //Debug.Log("FullOfMonster");
+        }
+    }
     private int getARandomMonsterIdByPhase()
     {
         var monsterPool = new List<int>();
@@ -85,6 +99,18 @@ public class EnemySpawner : MonoBehaviour
         var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
         //spawnedMonster.GetComponent<MonsterBehavior>().BeenRelease = false;
         spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(monsterTempleteData.GetMonsterDataByID(monsterId).Clone());
+        var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
+        destroyer.Pool = monsterObjectPool;//加入自毀器
+        monsterInPlayableArea_++;
+        return spawnedMonster;
+    }
+    private GameObject spawnAFasterObjectByMonsterId(int monsterId, Vector3 position)
+    {
+        var monsterPrefab = monsterTempleteData.GetMonsterDataByID(monsterId).MonsterPrefab;
+        var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
+        var monsterDate = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
+        monsterDate.MonsterMovementSpeed *= 2.5f;
+        spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(monsterDate);
         var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
         destroyer.Pool = monsterObjectPool;//加入自毀器
         monsterInPlayableArea_++;
@@ -129,7 +155,7 @@ public class EnemySpawner : MonoBehaviour
     {       
         for (int i = 0; i < nowSpawningDataTemplete.HowManyMonsterAFrame; i++)
         {
-            checkIfNeedToSpawnNewMonster();
+            checkIfNeedToSpawnNewFasterMonster();
         }
     }
     #endregion

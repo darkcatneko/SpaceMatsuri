@@ -45,6 +45,7 @@ public class FireworkBehavior : WeaponBehaviorBase
         foreach (var monster in monsterInRange)
         {
             monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999,true);
+            GameManager.Instance.MonsterBeenKilledByFirework();
         }
         base.ReleaseThisObject();
     }
