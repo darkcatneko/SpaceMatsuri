@@ -78,5 +78,6 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     public void PlayerGetDamage(float damage)
     {
         IngamePlayerData.Now_PlayerHealthPoint -= damage;
+        M_MainGameEvent.PlayerGetAttackEvent.Invoke();
     }
 }

@@ -27,4 +27,5 @@ public class MainGameEvent
     public UnityEvent<float> TensionBarChangeEvent = new UnityEvent<float>();
 
     public UnityEvent MonsterBeenKillByFireworkEvent = new UnityEvent();
+    public UnityEvent PlayerGetAttackEvent = new UnityEvent();
 }
