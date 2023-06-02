@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEditor.AddressableAssets.GUI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -60,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
             var monsterId = getARandomMonsterIdByPhase();
             var monsterPosition = getARandomSpawnPosition();
             var monsterObject = spawnAObjectByMonsterId(monsterId, monsterPosition);
-            Debug.Log(monsterInPlayableArea_);
+            //Debug.Log(monsterInPlayableArea_);
         }
         else
         {
@@ -74,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
             var monsterId = getARandomMonsterIdByPhase();
             var monsterPosition = getARandomSpawnPosition();
             var monsterObject = spawnAFasterObjectByMonsterId(monsterId, monsterPosition);
-            Debug.Log(monsterInPlayableArea_);
+            //Debug.Log(monsterInPlayableArea_);
         }
         else
         {
@@ -143,7 +142,7 @@ public class EnemySpawner : MonoBehaviour
     private void intoFeverTime()
     {
         var feverSpawnData = SpawnerDataBase.GetSpawnerDataByPhase(nowSpawnerPhase).Clone();
-        feverSpawnData.MonsterShouldBeInArea = 300;
+        feverSpawnData.MonsterShouldBeInArea = 150;
         feverSpawnData.HowManyMonsterAFrame = 20;
         nowSpawningDataTemplete = feverSpawnData.Clone();
     }

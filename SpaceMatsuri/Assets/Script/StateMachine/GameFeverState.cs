@@ -19,9 +19,10 @@ public class GameFeverState : StateBase
 
     public override void OnExit()
     {
-        excuteAllMonster();        
+        excuteAllMonster();
+        excuteAllDropItem();
         GameManager.Instance.ChangePlayerTension(0);
-        Debug.Log("Out Fever");
+        //Debug.Log("Out Fever");
         GameManager.Instance.ExitFeverTime();
     }
 
@@ -32,7 +33,7 @@ public class GameFeverState : StateBase
             GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_FreePlay_State);
         }
         GameManager.Instance.FeverStateUpdateFunction();
-        Debug.Log("FevertimeUpdating");
+        //Debug.Log("FevertimeUpdating");
     }
     private void excuteAllMonster()
     {
@@ -40,6 +41,14 @@ public class GameFeverState : StateBase
         foreach (var monster in monsters)
         {
             monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999,false);
+        }
+    }
+    private void excuteAllDropItem()
+    {
+        var dropItems = GameObject.FindGameObjectsWithTag("DropItem");
+        foreach (var dropItem in dropItems)
+        {
+            dropItem.GetComponent<PoolObjectDestroyer>().ReleaseThisObject();
         }
     }
 }

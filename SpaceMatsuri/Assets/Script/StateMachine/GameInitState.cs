@@ -15,10 +15,12 @@ public class GameInitState : StateBase
         var playerSpawner = initializer.AddComponent<PlayerSpawner>();
         var enemySpawner = initializer.AddComponent<EnemySpawner>();
         var weaponManager = initializer.AddComponent<WeaponManager>();
+        var dropItemSystem = initializer.AddComponent<DropItemSystem>();
         Debug.Log("GameIniting");
         await playerSpawner.spawnPlayerPrefab();
         await enemySpawner.monsterDataBaseInit();
         await weaponManager.WeaponManagerInit();
+        await dropItemSystem.DropItemSystemInit();
         Debug.Log("GameFinishIniting");
         GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Start_State);
     }

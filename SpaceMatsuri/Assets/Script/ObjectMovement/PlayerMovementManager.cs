@@ -15,4 +15,11 @@ public class PlayerMovementManager : ObjectMovementAbstract
     {
         healthBarImage_.fillAmount = GameManager.Instance.IngamePlayerData.Now_PlayerHealthPoint / GameManager.Instance.IngamePlayerData.MaxHealthPoint;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DropItem"))
+        {
+            collision.GetComponent<DropItemBaseClass>().ActivateDropItemSkill();
+        }
+    }
 }

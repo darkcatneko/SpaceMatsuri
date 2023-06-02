@@ -38,7 +38,7 @@ public class MonsterBehavior : ObjectMovementAbstract
     public override void ThisObjectBeenAttack(float damage,bool canDropLoot)
     {
         ThisMonsterData.Now_MonsterHealthPoint = ThisMonsterData.Now_MonsterHealthPoint - damage;
-        Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
+        //Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
         if (ThisMonsterData.Now_MonsterHealthPoint <= 0)
         {
             thisMonsterBeenKill(canDropLoot);
@@ -48,6 +48,10 @@ public class MonsterBehavior : ObjectMovementAbstract
     {
         var resultFeverBarValue = GameManager.Instance.IngamePlayerData.Now_TensionBar + 1 * GameManager.Instance.IngamePlayerData.MatsuriTenshenChargeSpeed;
         GameManager.Instance.ChangePlayerTension(resultFeverBarValue);
+        if (canDropLoot)
+        {
+            GameManager.Instance.CallSpawnDropItem(gameObject.transform.position);
+        }
         releaseThisObject();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,7 +61,7 @@ public class MonsterBehavior : ObjectMovementAbstract
             var attackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData.BasicAttack;
             collision.GetComponent<WeaponBehaviorBase>().ReleaseThisObject();
             ThisObjectBeenAttack(attackPower,true);
-            Debug.Log("BeHit  " + attackPower);
+            //Debug.Log("BeHit  " + attackPower);
         }
         if (collision.gameObject.CompareTag("Hanabi"))
         {

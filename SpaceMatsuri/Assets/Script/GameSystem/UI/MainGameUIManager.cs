@@ -24,6 +24,9 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private Text ComboTextShadow;
     private int monsterKilledInFeverTime;
     #endregion
+    [Header("PlayerLevelBar")]
+    [SerializeField] Slider playerLevelBar_;
+    [SerializeField] TextMeshProUGUI PlayerLevelText;
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.TensionBarChangeEvent.AddListener(updateTenshinBar);
@@ -33,6 +36,11 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.M_MainGameEvent.MonsterBeenKillByFireworkEvent.AddListener(updateComboText);
         GameManager.Instance.M_MainGameEvent.GameInitEvent.AddListener(initTensionBar);
         GameManager.Instance.M_MainGameEvent.CallFireworkSpawnEvent.AddListener(comboFireFeedBack);
+        GameManager.Instance.M_MainGameEvent.PlayerLevelUpEvent.AddListener(updateLevelText);
+    }
+    private void Update()
+    {
+        playerLevelBar_.value = GameManager.Instance.NowPlayerLevelPercentage;
     }
     private void initTensionBar()
     {
@@ -86,5 +94,9 @@ public class MainGameUIManager : MonoBehaviour
         FeverTimeUIImage.sprite = FeverImage_Base;
         //FeverTimerObject.transform.DOMoveY(FeverTimeStartPosition.y, 0.35f);
         ComboObject.transform.DOMove(ComboStartPosition, 0.35f);
+    }
+    private void updateLevelText ()
+    {
+        PlayerLevelText.text = "LeveL:" + GameManager.Instance.IngamePlayerData.PlayerLevel;
     }
 }

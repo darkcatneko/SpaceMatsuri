@@ -15,7 +15,7 @@ public class MainGameEvent
     public UnityEvent FreeGamePlayUpdateEvent = new UnityEvent();
 
     public UnityEvent FeverTimeOnUpdateEvent = new UnityEvent();
-    
+
     public UnityEvent CallFireworkSpawnEvent = new UnityEvent();
 
     public UnityEvent EnterFeverTimeEvent = new UnityEvent();
@@ -28,4 +28,6 @@ public class MainGameEvent
 
     public UnityEvent MonsterBeenKillByFireworkEvent = new UnityEvent();
     public UnityEvent PlayerGetAttackEvent = new UnityEvent();
+    public UnityEvent<Vector3> CallSpawnDropItem = new UnityEvent<Vector3>();
+    public UnityEvent PlayerLevelUpEvent = new UnityEvent();
 }

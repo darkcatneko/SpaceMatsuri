@@ -8,6 +8,7 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     public MainGameEvent M_MainGameEvent = new MainGameEvent();
     public PlayerDataManager M_PlayerDataManager = new PlayerDataManager();
     public BasicPlayerDataTemplate IngamePlayerData => M_PlayerDataManager.M_InGamePlayerData.InGameUsedCurrentData;
+    public float NowPlayerLevelPercentage => this.IngamePlayerData.LevelBar / M_PlayerDataManager.NextLevelNeededExp;
     public GameObject PlayerObject;
     public StageManager M_StageManager = new StageManager();//小概念
     protected override void init()
@@ -32,9 +33,9 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     {
         M_MainGameEvent.GameStartEvent.Invoke();
     }
-    public void PlayerMovement(Vector3 dir,float speed)
+    public void PlayerMovement(Vector3 dir, float speed)
     {
-        M_MainGameEvent.PlayerMovement.Invoke(dir,speed);
+        M_MainGameEvent.PlayerMovement.Invoke(dir, speed);
     }
     public void FreeGamePlayUpdater()
     {
@@ -79,5 +80,18 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     {
         IngamePlayerData.Now_PlayerHealthPoint -= damage;
         M_MainGameEvent.PlayerGetAttackEvent.Invoke();
+    }
+    public void PlayerGainExperience(float amount)
+    {
+        M_PlayerDataManager.PlayerGainExp(amount);
+    }
+    public void CallSpawnDropItem(Vector3 spawnPosition)
+    {
+        M_MainGameEvent.CallSpawnDropItem.Invoke(spawnPosition);
+    }
+    public void PlayerLevelUpEvent()
+    {
+        M_PlayerDataManager.PlayerLevelUp();
+        M_MainGameEvent.PlayerLevelUpEvent.Invoke();
     }
 }

@@ -15,4 +15,5 @@ public class InGamePlayerData
         InGameUsedCurrentData = basicPlayerDataTemplate.Clone();
         InGameUsedCurrentData.Now_PlayerHealthPoint = InGameUsedCurrentData.MaxHealthPoint;
     }
+    
 }

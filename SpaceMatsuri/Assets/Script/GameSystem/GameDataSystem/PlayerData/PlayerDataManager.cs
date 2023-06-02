@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerDataManager
 {
     [SerializeField]public InGamePlayerData M_InGamePlayerData;
+    [field: SerializeField] public int NextLevelNeededExp { get; private set; } 
     private PlayerTempleteDataBase playerTempleteDataBase_ = new PlayerTempleteDataBase();
     //public Weapon[] WeaponPacks = new Weapon[3];//改成List
     public List<Weapon> WeaponPacks = new List<Weapon>();
@@ -30,5 +31,38 @@ public class PlayerDataManager
     public void PlayerDataInit(int initPlayerID)
     {
         M_InGamePlayerData = new InGamePlayerData(playerTempleteDataBase_.GetBasicPlayerDataByID(initPlayerID));
+        setNeededExpByLevel(M_InGamePlayerData.InGameUsedCurrentData.PlayerLevel + 1);
+    }
+    public void PlayerGainExp(float amount)
+    {
+        M_InGamePlayerData.InGameUsedCurrentData.LevelBar += amount;
+        if (M_InGamePlayerData.InGameUsedCurrentData.LevelBar>=NextLevelNeededExp)
+        {
+            M_InGamePlayerData.InGameUsedCurrentData.LevelBar = 0;
+            //觸發升級事件
+            GameManager.Instance.PlayerLevelUpEvent();
+        }
+    }
+    private void setNeededExpByLevel(int nextLevel)
+    {
+        NextLevelNeededExp = getNeededExpByLevel(nextLevel);
+    }
+    private int getNeededExpByLevel(int nextLevel)
+    {
+        if (nextLevel <= 25)
+        {
+            var result = 10 * (nextLevel - 1) + 5;
+            return result;
+        }
+        else
+        {
+            var result = 16 * (nextLevel - 1) + 5;
+            return result;
+        }
+    }
+    public void PlayerLevelUp()
+    {
+        M_InGamePlayerData.InGameUsedCurrentData.PlayerLevel += 1;
+        setNeededExpByLevel(M_InGamePlayerData.InGameUsedCurrentData.PlayerLevel + 1);
     }
 }
