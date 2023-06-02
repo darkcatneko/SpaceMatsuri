@@ -59,6 +59,11 @@ public class CSVClassGenerator
                     propertyInfo[i].SetValue(DataBeSet, false);
                 }
             }
+            else if (propertyInfo[i].PropertyType == typeof(Sprite))
+            {
+                var sprite = await AddressableSearcher.GetAddressableAssetAsync<Sprite>(dataText[i]);
+                propertyInfo[i].SetValue(DataBeSet, sprite);
+            }
         }
     }
 }

@@ -58,9 +58,10 @@ public class MonsterBehavior : ObjectMovementAbstract
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
-            var attackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData.BasicAttack;
+            var weaponAttackPower = collision.GetComponent<WeaponBehaviorBase>().ThisProjectileData.BasicAttack;
+            var totalAttackPower = weaponAttackPower + GameManager.Instance.IngamePlayerData.PlayerAttack;
             collision.GetComponent<WeaponBehaviorBase>().ReleaseThisObject();
-            ThisObjectBeenAttack(attackPower,true);
+            ThisObjectBeenAttack(totalAttackPower, true);
             //Debug.Log("BeHit  " + attackPower);
         }
         if (collision.gameObject.CompareTag("Hanabi"))

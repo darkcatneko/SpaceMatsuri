@@ -1,0 +1,9 @@
+Name,Id,NowLevel,MaxCanGetLevel,MainEffectString,ObjectSpritePath
+Engine,0,1,10,MovementSpeed+2,Sprite/Engine
+Armor,1,1,10,Health+25,Sprite/Armor
+Taiko,2,1,10,FeverTimeLastTime+1,Sprite/Taiko
+SpellPaper,3,1,10,Attack+10,Sprite/SpellPaper
+Cloth,4,1,10,FeverTimeChargeSpeed+10%,Sprite/Cloth
+Cannon,5,1,10,ProjectileScale+10%,Sprite/Cannon
+Omamori,6,1,5,ProjectileCount+1,Sprite/Omamori
+TempoWood,7,1,5,AttackSpeed + 5%,Sprite/TempoWood

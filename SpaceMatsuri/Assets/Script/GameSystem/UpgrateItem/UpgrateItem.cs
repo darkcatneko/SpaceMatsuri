@@ -7,6 +7,8 @@ public class UpgrateItem
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public int Id { get; private set; }
     [field: SerializeField] public int NowLevel { get; set; }
+    [field:SerializeField] public int MaxCanGetLevel { get; private set; }
+    [field:SerializeField] public string MainEffectString { get; private set; }
     [field:SerializeField] public Sprite ThisUpgrateItemSprite { get; private set; }
     public UpgrateItem Clone()
     {

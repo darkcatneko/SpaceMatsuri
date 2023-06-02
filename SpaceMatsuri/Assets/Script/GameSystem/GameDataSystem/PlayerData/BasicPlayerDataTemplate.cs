@@ -21,7 +21,7 @@ public class BasicPlayerDataTemplate
     [field: SerializeField] public float MatsuriTenshenChargeSpeed { get; set; } = 1;
     [field: SerializeField] public float AttackProjectileScale { get; set; } = 1;
     [field: SerializeField] public int AttackProjectileBasicCount { get; set; } = 1;
-    [field: SerializeField] public int AttackFrequence { get; set; } = 1;
+    [field: SerializeField] public float AttackFrequence { get; set; } = 1;
     [field: SerializeField] public string PlayerPrefabPath { get; set; } = "Prefab/matsuriPlayer";
 
     public BasicPlayerDataTemplate Clone()

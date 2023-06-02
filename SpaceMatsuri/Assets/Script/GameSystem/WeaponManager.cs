@@ -34,7 +34,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Time.time>weapon.NextFireTime)
         {
-            weapon.NextFireTime += weapon.AttackFrequence;
+            weapon.NextFireTime += weapon.AttackFrequence*GameManager.Instance.IngamePlayerData.AttackFrequence;
             for (int i = 0; i < weapon.BasicProjectileBasicCount+GameManager.Instance.IngamePlayerData.AttackProjectileBasicCount; i++)
             {
                 SpawnWeapon(weapon);
@@ -55,11 +55,13 @@ public class WeaponManager : MonoBehaviour
     public void SpawnWaterGun(Weapon weapon,Vector3 originPoint)
     {
         var waterGunPrefab = weapon.WeaponPrefab;
+        var thisWeaponBasicData = weaponDataBase.GetWeaponByID(1).Clone();
         var randomSpawnPoint = new Vector3(UnityEngine.Random.Range(0.5f, 2), UnityEngine.Random.Range(0.5f, 2), 0);
         var spawnPoint = randomSpawnPoint + originPoint;
         var waterGunObject = WaterGunPool.GetGameObject(waterGunPrefab, spawnPoint, Quaternion.identity);
+        waterGunObject.transform.localScale = thisWeaponBasicData.WeaponPrefab.transform.localScale* GameManager.Instance.IngamePlayerData.AttackProjectileScale;
         var waterGunMover = waterGunObject.GetComponent<WaterGunProjectileMovement>();
-        waterGunMover.ThisProjectileData = weaponDataBase.GetWeaponByID(1).Clone();
+        waterGunMover.ThisProjectileData = thisWeaponBasicData;
         var target = GetANearestMonster();
         waterGunMover.TargetLock(target);
         var destroyer = waterGunObject.GetComponent<PoolObjectDestroyer>();
