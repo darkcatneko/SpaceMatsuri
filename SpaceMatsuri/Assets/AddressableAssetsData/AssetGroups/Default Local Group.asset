@@ -57,6 +57,42 @@ MonoBehaviour:
     m_Address: Prefab/tamashi
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c115011ea74362649b3d5bb27bad9dd4
+    m_Address: Sprite/Engine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ef42fb83885e384387e2dabdb9b5ecb
+    m_Address: Sprite/Armor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc3ea5f32e55d6445a3d1bb30388a86f
+    m_Address: Sprite/Taiko
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11d00e40a517a3b4ab0a48948c72e63d
+    m_Address: Sprite/SpellPaper
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd755573070f9d341adc538c9e47c556
+    m_Address: Sprite/Cloth
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f2905305f9a1f24499cab6a868d6568
+    m_Address: Sprite/Cannon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46249306c996d1e459d4efb35ab61ac6
+    m_Address: Sprite/Omamori
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c294b65b9c9b479479d12ea37a37a84e
+    m_Address: Sprite/TempoWood
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d3f5e08a2a31fa64592cac99e876b06e
+    m_Address: Excel/SpaceMatsuriUpgrateItemSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:

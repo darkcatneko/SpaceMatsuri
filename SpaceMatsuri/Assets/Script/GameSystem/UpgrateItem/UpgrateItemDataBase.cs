@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class UpgrateItemDataBase
 {
     public List<UpgrateItem> M_UpgrateItemDataBase = new List<UpgrateItem>();
-    public void UpgrateItemDataBaseInit()
-    {
-
-    }
-    public async void ReadCsv()
+    public async Task ReadCsv()
     {
         var textAsset = await AddressableSearcher.GetAddressableAssetAsync<TextAsset>("Excel/SpaceMatsuriUpgrateItemSheet");
         var classArray = await CSVClassGenerator.GenClassArrayByCSV<UpgrateItem>(textAsset);

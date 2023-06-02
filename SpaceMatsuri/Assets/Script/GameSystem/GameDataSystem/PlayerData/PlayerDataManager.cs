@@ -11,6 +11,7 @@ public class PlayerDataManager
     private PlayerTempleteDataBase playerTempleteDataBase_ = new PlayerTempleteDataBase();
     //public Weapon[] WeaponPacks = new Weapon[3];//改成List
     public List<Weapon> WeaponPacks = new List<Weapon>();
+    public List<UpgrateItem> UpgrateItems = new List<UpgrateItem>();
     //呼叫所有武器
     public void CheckAllAllWeaponCoolDown()
     {
