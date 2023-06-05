@@ -20,6 +20,10 @@ public class UpgrateItem
             Id = Id,
             NowLevel = NowLevel,
             ThisUpgrateItemSprite = ThisUpgrateItemSprite,
+            MaxCanGetLevel = MaxCanGetLevel,
+            MainEffectString = MainEffectString,
+            WhichBuff = WhichBuff,
+            BuffAmount = BuffAmount
         };
         return clone;
     }

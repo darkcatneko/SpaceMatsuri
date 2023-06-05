@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    private WeaponDataBase weaponDataBase = new WeaponDataBase();
+    //private WeaponDataBase weaponDataBase = new WeaponDataBase();
+    private WeaponDataBase weaponDataBase => DataBaseCenter.Instance.WeaponDataBase;
     public ObjectPoolClass WaterGunPool;
     public ObjectPoolClass HanabiPool;
     public ObjectPoolClass HanabiParticalPool;
@@ -16,7 +17,7 @@ public class WeaponManager : MonoBehaviour
     private GameObject kitsunePrefab_;
     public async Task WeaponManagerInit()
     {
-        await weaponDataBase.ReadCsv();
+        //await weaponDataBase.ReadCsv();
         WaterGunPool = this.gameObject.AddComponent<ObjectPoolClass>();
         HanabiPool = this.gameObject.AddComponent<ObjectPoolClass>();
         HanabiParticalPool = this.gameObject.AddComponent<ObjectPoolClass>();

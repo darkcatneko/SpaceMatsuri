@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class UpgrateItemManager : MonoBehaviour
 {
-   private UpgrateItemDataBase upgrateItemDataBase_ = new UpgrateItemDataBase();
+    private UpgrateItemDataBase upgrateItemDataBase_ => DataBaseCenter.Instance.UpgrateItemDataBase;
 
-    public async Task UpgrateItemManagerInit()
-    {
-        await upgrateItemDataBase_.ReadCsv();
-    }
+    //public async Task UpgrateItemManagerInit()
+    //{
+    //    await upgrateItemDataBase_.ReadCsv();
+    //}
 }

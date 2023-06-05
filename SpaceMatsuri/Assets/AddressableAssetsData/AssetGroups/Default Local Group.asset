@@ -93,6 +93,14 @@ MonoBehaviour:
     m_Address: Excel/SpaceMatsuriUpgrateItemSheet
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: eff8a08a86c61d34fa342c08f24c40b7
+    m_Address: Sprite/HanabiTama
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 127dda25b07b87a42a002e8335ca7589
+    m_Address: Sprite/WaterGun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:

@@ -22,7 +22,7 @@ public class GameInitState : StateBase
         await enemySpawner.monsterDataBaseInit();
         await weaponManager.WeaponManagerInit();
         await dropItemSystem.DropItemSystemInit();
-        await upgrateSystem.UpgrateItemManagerInit();
+        //await upgrateSystem.UpgrateItemManagerInit();
         Debug.Log("GameFinishIniting");
         GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Start_State);
     }

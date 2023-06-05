@@ -52,12 +52,12 @@ public class PlayerDataManager
     {
         if (nextLevel <= 25)
         {
-            var result = 10 * (nextLevel - 1) + 5;
+            var result = 10 * (nextLevel - 1) + 15;
             return result;
         }
         else
         {
-            var result = 16 * (nextLevel - 1) + 5;
+            var result = 16 * (nextLevel - 1) + 15;
             return result;
         }
     }
@@ -65,5 +65,27 @@ public class PlayerDataManager
     {
         M_InGamePlayerData.InGameUsedCurrentData.PlayerLevel += 1;
         setNeededExpByLevel(M_InGamePlayerData.InGameUsedCurrentData.PlayerLevel + 1);
+    }
+    public Weapon GetWeaponInPackById(int id)
+    {
+        for (int i = 0; i < WeaponPacks.Count; i++)
+        {
+            if (WeaponPacks[i].Id == id)
+            {
+                return WeaponPacks[i];
+            }
+        }
+        return null;
+    }
+    public UpgrateItem GetUpgrateItemInPackById(int id)
+    {
+        for (int i = 0; i < UpgrateItems.Count; i++)
+        {
+            if (UpgrateItems[i].Id == id)
+            {
+                return UpgrateItems[i];
+            }
+        }
+        return null;
     }
 }

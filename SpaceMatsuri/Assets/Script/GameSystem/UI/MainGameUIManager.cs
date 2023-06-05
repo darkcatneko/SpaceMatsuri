@@ -24,6 +24,15 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private Text ComboTextShadow;
     private int monsterKilledInFeverTime;
     #endregion
+    #region UpgrateItemUsedUI
+    [Header("UpgrateUI")]
+    [SerializeField] GameObject upgrateUIS;
+    [SerializeField] UpgrateButtonBehavior[] upgrateButtonBehavior_;
+    [SerializeField]
+    Image[] WeaponImages;
+    [SerializeField]
+    Image[] BuffItemImages;
+    #endregion
     [Header("PlayerLevelBar")]
     [SerializeField] Slider playerLevelBar_;
     [SerializeField] TextMeshProUGUI PlayerLevelText;
@@ -37,6 +46,8 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.M_MainGameEvent.GameInitEvent.AddListener(initTensionBar);
         GameManager.Instance.M_MainGameEvent.CallFireworkSpawnEvent.AddListener(comboFireFeedBack);
         GameManager.Instance.M_MainGameEvent.PlayerLevelUpEvent.AddListener(updateLevelText);
+        GameManager.Instance.M_MainGameEvent.PlayerLevelUpEvent.AddListener(callActivateUpgrateUI);
+        GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(updateWeaponPackImageAndBuffItemImage);
     }
     private void Update()
     {
@@ -98,5 +109,26 @@ public class MainGameUIManager : MonoBehaviour
     private void updateLevelText ()
     {
         PlayerLevelText.text = "LeveL:" + GameManager.Instance.IngamePlayerData.PlayerLevel;
+    }
+    private void callActivateUpgrateUI()
+    {
+        upgrateUIS.SetActive(true);
+        Time.timeScale = 0;
+        var levelUpItems = RandomUpgrateGenerater.RandomThreeUpgrateItem();
+        for (int i = 0; i < upgrateButtonBehavior_.Length; i++)
+        {
+            upgrateButtonBehavior_[i].UpdateThisUpgrateButton(levelUpItems[i]);
+        }
+    }
+    private void updateWeaponPackImageAndBuffItemImage()
+    {
+        for (int i = 0; i < GameManager.Instance.M_PlayerDataManager.WeaponPacks.Count; i++)
+        {
+            WeaponImages[i].sprite = GameManager.Instance.M_PlayerDataManager.WeaponPacks[i].WeaponSprite;
+        }
+        for (int i = 0; i < GameManager.Instance.M_PlayerDataManager.UpgrateItems.Count; i++)
+        {
+            BuffItemImages[i].sprite = GameManager.Instance.M_PlayerDataManager.UpgrateItems[i].ThisUpgrateItemSprite;
+        }
     }
 }

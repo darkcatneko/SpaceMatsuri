@@ -94,4 +94,8 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
         M_PlayerDataManager.PlayerLevelUp();
         M_MainGameEvent.PlayerLevelUpEvent.Invoke();
     }
+    public void PlayerUpgrate()
+    {
+        M_MainGameEvent.PlayerUpgrateEvent.Invoke();
+    }
 }

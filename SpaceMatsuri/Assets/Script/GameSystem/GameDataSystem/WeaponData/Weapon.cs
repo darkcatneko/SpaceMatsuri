@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 public class Weapon
 {
     [field: SerializeField] public string Name { get; private set; } = "WaterGun";
@@ -16,6 +16,7 @@ public class Weapon
     [field: SerializeField] public int AttackFrequence { get; set; } = 1;
     [field: SerializeField] public GameObject WeaponPrefab { get; set; }
     [field: SerializeField] public float NextFireTime { get; set; } = 0;
+    [field: SerializeField] public Sprite WeaponSprite { get; set; }
     public Weapon Clone()
     {
         var clone = new Weapon()
@@ -29,6 +30,8 @@ public class Weapon
             BasicProjectileBasicCount = BasicProjectileBasicCount,
             AttackFrequence = AttackFrequence,
             WeaponPrefab = WeaponPrefab,
+            NextFireTime= NextFireTime,
+            WeaponSprite = WeaponSprite,
         };
         return clone;
     }

@@ -30,4 +30,5 @@ public class MainGameEvent
     public UnityEvent PlayerGetAttackEvent = new UnityEvent();
     public UnityEvent<Vector3> CallSpawnDropItem = new UnityEvent<Vector3>();
     public UnityEvent PlayerLevelUpEvent = new UnityEvent();
+    public UnityEvent PlayerUpgrateEvent = new UnityEvent();
 }
