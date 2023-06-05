@@ -17,21 +17,74 @@ public class UpgrateButtonBehavior : MonoBehaviour
     {
         if (ThisUpgrateStruct.UpgrateType == UpgrateType.Weapon)
         {
-
+            if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(ThisUpgrateStruct.ThisUpgrateId) != null)
+            {
+                GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(ThisUpgrateStruct.ThisUpgrateId).ThisWeaponLevelUp();
+            }
+            else
+            {
+                GameManager.Instance.M_PlayerDataManager.WeaponPacks.Add(DataBaseCenter.Instance.WeaponDataBase.GetWeaponByID(ThisUpgrateStruct.ThisUpgrateId).Clone());
+            }
+            GameManager.Instance.PlayerUpgrate();
+        }
+        else
+        {
+            var thisBuffItemData = DataBaseCenter.Instance.UpgrateItemDataBase.GetUpgrateItemDataByID(ThisUpgrateStruct.ThisUpgrateId).Clone();
+            gainBuff(thisBuffItemData.WhichBuff, thisBuffItemData.BuffAmount);
+            if (GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(ThisUpgrateStruct.ThisUpgrateId)!=null)
+            {
+                GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(ThisUpgrateStruct.ThisUpgrateId).NowLevel++;
+            }
+            else
+            {
+                GameManager.Instance.M_PlayerDataManager.UpgrateItems.Add(thisBuffItemData);
+            }
+            GameManager.Instance.PlayerUpgrate();
+        }
+    }
+    private void gainBuff(string buffType, float amount)
+    {
+        switch (buffType)
+        {
+            case "MovementSpeed":
+                GameManager.Instance.IngamePlayerData.PlayerMovementSpeed += amount;
+                break;
+            case "Health":
+                GameManager.Instance.IngamePlayerData.MaxHealthPoint += amount;
+                GameManager.Instance.IngamePlayerData.Now_PlayerHealthPoint += amount;
+                break;
+            case "FeverTimeLastTime":
+                GameManager.Instance.IngamePlayerData.FeverTimeLastTime += amount;
+                break;
+            case "Attack":
+                GameManager.Instance.IngamePlayerData.PlayerAttack += amount;
+                break;
+            case "FeverTimeChargeSpeed":
+                GameManager.Instance.IngamePlayerData.MatsuriTenshenChargeSpeed += amount;
+                break;
+            case "ProjectileScale":
+                GameManager.Instance.IngamePlayerData.AttackProjectileScale += amount;
+                break;
+            case "ProjectileCount":
+                GameManager.Instance.IngamePlayerData.AttackProjectileBasicCount += (int)amount;
+                break;
+            case "AttackSpeed":
+                GameManager.Instance.IngamePlayerData.AttackFrequence += amount;
+                break;
         }
     }
     public void UpdateThisUpgrateButton(UpgrateStruct thisUpgrate)
     {
+        ThisUpgrateStruct = thisUpgrate;
         if (thisUpgrate.UpgrateType == UpgrateType.Weapon)
         {
             var thisweaponUpgrate = DataBaseCenter.Instance.WeaponDataBase.GetWeaponByID(thisUpgrate.ThisUpgrateId);
-            ThisUpgrateStruct = thisUpgrate;
             thisUpgrateButtonImage.sprite = thisweaponUpgrate.WeaponSprite;
             thisUpgrateItemName.text = thisweaponUpgrate.Name;
-            if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId)!=null)
+            if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId) != null)
             {
-                thisUpgrateItemLevel.text = (thisweaponUpgrate.NowLevel + 1).ToString();
-                if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId).NowLevel<=5)
+                thisUpgrateItemLevel.text = (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId).NowLevel + 1).ToString();
+                if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId).NowLevel <= 5)
                 {
                     thisUpgrateItemEffect.text = "+1 projectile\r\n+5 damage";
                 }
@@ -45,7 +98,7 @@ public class UpgrateButtonBehavior : MonoBehaviour
                 thisUpgrateItemLevel.text = "NEW";
                 thisUpgrateItemEffect.text = "+1 projectile\r\n+5 damage";
             }
-            
+
         }
         else
         {
@@ -55,7 +108,7 @@ public class UpgrateButtonBehavior : MonoBehaviour
             thisUpgrateItemEffect.text = thisBuffItemUpgrate.MainEffectString;
             if (GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(thisUpgrate.ThisUpgrateId) != null)
             {
-                thisUpgrateItemLevel.text = (thisBuffItemUpgrate.NowLevel + 1).ToString();
+                thisUpgrateItemLevel.text = (GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(thisUpgrate.ThisUpgrateId).NowLevel + 1).ToString();
             }
             else
             {

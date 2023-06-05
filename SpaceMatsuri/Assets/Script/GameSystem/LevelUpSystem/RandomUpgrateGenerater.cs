@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class RandomUpgrateGenerater
         var randomResults = new List<UpgrateStruct>();
         for (int i = 0; i < 3; i++)
         {
-            var randomNum = Random.Range(0, upgrateItemPool.Count);
+            var randomNum = UnityEngine.Random.Range(0, upgrateItemPool.Count);
             randomResults.Add(upgrateItemPool[randomNum]);
             upgrateItemPool.Remove(upgrateItemPool[randomNum]);
         }
@@ -20,7 +21,7 @@ public class RandomUpgrateGenerater
     private static List<UpgrateStruct> getUpgrateItemPool()
     {
         var upgrateItemPool = new List<UpgrateStruct>();
-        if (GameManager.Instance.M_PlayerDataManager.WeaponPacks.Count <= 3)
+        if (GameManager.Instance.M_PlayerDataManager.WeaponPacks.Count < 3)
         {
             for (int i = 0; i < DataBaseCenter.Instance.WeaponDataBase.M_WeaponDataBase.Count; i++)
             {
@@ -61,7 +62,7 @@ public class RandomUpgrateGenerater
             }
         }
 
-        if (GameManager.Instance.M_PlayerDataManager.UpgrateItems.Count <= 3)
+        if (GameManager.Instance.M_PlayerDataManager.UpgrateItems.Count < 3)
         {
             for (int i = 0; i < DataBaseCenter.Instance.UpgrateItemDataBase.M_UpgrateItemDataBase.Count; i++)
             {
@@ -98,6 +99,8 @@ public class RandomUpgrateGenerater
         return upgrateItemPool;
     }
 }
+
+[Serializable]
 public struct UpgrateStruct
 {
     public UpgrateType UpgrateType;

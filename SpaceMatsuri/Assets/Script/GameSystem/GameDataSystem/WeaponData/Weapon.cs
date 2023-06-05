@@ -39,4 +39,18 @@ public class Weapon
     {
 
     }
+    public void ThisWeaponLevelUp()
+    {
+        if (NowLevel<=5)
+        {
+            NowLevel += 1;
+            BasicAttack += 5;
+            BasicProjectileBasicCount += 1;
+        }
+        else
+        {
+            BasicProjectileScale += 0.1f;
+            BasicAttack += 10;
+        }
+    }
 }

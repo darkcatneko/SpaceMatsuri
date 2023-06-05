@@ -48,6 +48,7 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.M_MainGameEvent.PlayerLevelUpEvent.AddListener(updateLevelText);
         GameManager.Instance.M_MainGameEvent.PlayerLevelUpEvent.AddListener(callActivateUpgrateUI);
         GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(updateWeaponPackImageAndBuffItemImage);
+        GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(callDisActiveUpgrateUI);
     }
     private void Update()
     {
@@ -120,6 +121,11 @@ public class MainGameUIManager : MonoBehaviour
             upgrateButtonBehavior_[i].UpdateThisUpgrateButton(levelUpItems[i]);
         }
     }
+    public void callDisActiveUpgrateUI()
+    {
+        upgrateUIS.SetActive(false);
+        Time.timeScale = 1;
+    }
     private void updateWeaponPackImageAndBuffItemImage()
     {
         for (int i = 0; i < GameManager.Instance.M_PlayerDataManager.WeaponPacks.Count; i++)
@@ -131,4 +137,5 @@ public class MainGameUIManager : MonoBehaviour
             BuffItemImages[i].sprite = GameManager.Instance.M_PlayerDataManager.UpgrateItems[i].ThisUpgrateItemSprite;
         }
     }
+    
 }

@@ -6,4 +6,4 @@ SpellPaper,3,1,10,Attack+10,Attack,10,Sprite/SpellPaper
 Cloth,4,1,10,FeverTimeChargeSpeed+10%,FeverTimeChargeSpeed,0.1,Sprite/Cloth
 Cannon,5,1,10,ProjectileScale+10%,ProjectileScale,0.1,Sprite/Cannon
 Omamori,6,1,5,ProjectileCount+1,ProjectileCount,1,Sprite/Omamori
-TempoWood,7,1,5,AttackSpeed + 5%,AttackSpeed ,-0.05,Sprite/TempoWood
+TempoWood,7,1,5,AttackSpeed + 5%,AttackSpeed,-0.05,Sprite/TempoWood
