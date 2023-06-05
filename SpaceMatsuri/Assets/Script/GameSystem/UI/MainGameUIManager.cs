@@ -61,7 +61,7 @@ public class MainGameUIManager : MonoBehaviour
     private void updateTenshinBar(float result)
     {
         //TensionBarUI.UpdateValue( Mathf.RoundToInt(result), 100);
-        FeverTimeTimerCircleImage.fillAmount = result/100;
+        FeverTimeTimerCircleImage.fillAmount = result / 100;
     }
     private void enterFeverTimeUIEvent()
     {
@@ -106,7 +106,7 @@ public class MainGameUIManager : MonoBehaviour
         //FeverTimerObject.transform.DOMoveY(FeverTimeStartPosition.y, 0.35f);
         ComboObject.transform.DOMove(ComboStartPosition, 0.35f);
     }
-    private void updateLevelText ()
+    private void updateLevelText()
     {
         PlayerLevelText.text = "LeveL:" + GameManager.Instance.IngamePlayerData.PlayerLevel;
     }

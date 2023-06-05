@@ -56,11 +56,12 @@ public class WeaponManager : MonoBehaviour
     public void SpawnWaterGun(Weapon weapon,Vector3 originPoint)
     {
         var waterGunPrefab = weapon.WeaponPrefab;
-        var thisWeaponBasicData = weaponDataBase.GetWeaponByID(1).Clone();
+        //var thisWeaponBasicData = weaponDataBase.GetWeaponByID(1).Clone();
+        var thisWeaponBasicData = weapon.Clone();
         var randomSpawnPoint = new Vector3(UnityEngine.Random.Range(0.5f, 2), UnityEngine.Random.Range(0.5f, 2), 0);
         var spawnPoint = randomSpawnPoint + originPoint;
         var waterGunObject = WaterGunPool.GetGameObject(waterGunPrefab, spawnPoint, Quaternion.identity);
-        waterGunObject.transform.localScale = thisWeaponBasicData.WeaponPrefab.transform.localScale* GameManager.Instance.IngamePlayerData.AttackProjectileScale;
+        waterGunObject.transform.localScale = thisWeaponBasicData.WeaponPrefab.transform.localScale* GameManager.Instance.IngamePlayerData.AttackProjectileScale * thisWeaponBasicData.BasicProjectileScale;
         var waterGunMover = waterGunObject.GetComponent<WaterGunProjectileMovement>();
         waterGunMover.ThisProjectileData = thisWeaponBasicData;
         var target = GetANearestMonster();
@@ -123,6 +124,7 @@ public class WeaponManager : MonoBehaviour
     public void TestAddWeaponToPlayer()
     {
         GameManager.Instance.M_PlayerDataManager.WeaponPacks.Add(weaponDataBase.GetWeaponByID(1).Clone());
+        GameManager.Instance.PlayerUpgrate();
     }
    
 }
