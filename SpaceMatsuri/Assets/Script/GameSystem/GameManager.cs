@@ -11,6 +11,7 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     public float NowPlayerLevelPercentage => this.IngamePlayerData.LevelBar / M_PlayerDataManager.NextLevelNeededExp;
     public GameObject PlayerObject;
     public StageManager M_StageManager = new StageManager();//小概念
+    public int FeverCount = 0;
     protected override void init()
     {
         M_PlayerDataManager.PlayerDataManagerInit();
@@ -60,6 +61,7 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     }
     public void EnterFevertime()
     {
+        FeverCount++;
         M_MainGameEvent.EnterFeverTimeEvent.Invoke();
     }
     public void ExitFeverTime()

@@ -1,3 +1,3 @@
 Name,Id,NowLevel,MovementSpeed,BasicAttack,BasicProjectileScale,BasicProjectileBasicCount,AttackFrequence,WeaponPrefabPath,NextFireTime,WeaponSpritePath
-WaterGun,1,1,35,10,1,1,2,Prefab/WaterGun,0,Sprite/WaterGun
+WaterGun,1,1,35,10,1,1,0.5,Prefab/WaterGun,0,Sprite/WaterGun
 Hanabi,99,1,50,0,1,1,0,Prefab/HanabiTama,0,Sprite/HanabiTama

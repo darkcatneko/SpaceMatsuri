@@ -20,7 +20,7 @@ public class GameFreePlayState : StateBase
 
     public override void OnUpdate()
     {
-        if (GameManager.Instance.IngamePlayerData.Now_TensionBar > 100)
+        if (GameManager.Instance.IngamePlayerData.Now_TensionBar >(100+ 100 * GameManager.Instance.FeverCount)) 
         {
             GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Fever_State);
         }

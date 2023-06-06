@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+[Serializable]
 public class Weapon
 {
     [field: SerializeField] public string Name { get; private set; } = "WaterGun";
@@ -13,7 +15,7 @@ public class Weapon
     [field: SerializeField] public float BasicAttack {get;set; }
     [field: SerializeField] public float BasicProjectileScale { get; set; } = 1;
     [field: SerializeField] public int BasicProjectileBasicCount { get; set; } = 1;
-    [field: SerializeField] public int AttackFrequence { get; set; } = 1;
+    [field: SerializeField] public float AttackFrequence { get; set; } = 1;
     [field: SerializeField] public GameObject WeaponPrefab { get; set; }
     [field: SerializeField] public float NextFireTime { get; set; } = 0;
     [field: SerializeField] public Sprite WeaponSprite { get; set; }
@@ -49,6 +51,7 @@ public class Weapon
         }
         else
         {
+            NowLevel += 1;
             BasicProjectileScale += 0.1f;
             BasicAttack += 10;
         }

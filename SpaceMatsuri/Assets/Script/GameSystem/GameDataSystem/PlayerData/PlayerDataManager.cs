@@ -52,12 +52,12 @@ public class PlayerDataManager
     {
         if (nextLevel <= 25)
         {
-            var result = 10 * (nextLevel - 1) + 15;
+            var result = 20 * (nextLevel - 1) + 50;
             return result;
         }
         else
         {
-            var result = 16 * (nextLevel - 1) + 15;
+            var result = 40 * (nextLevel - 1) + 100;
             return result;
         }
     }

@@ -83,7 +83,7 @@ public class UpgrateButtonBehavior : MonoBehaviour
             thisUpgrateItemName.text = thisweaponUpgrate.Name;
             if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId) != null)
             {
-                thisUpgrateItemLevel.text = (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId).NowLevel + 1).ToString();
+                thisUpgrateItemLevel.text ="LV:"+ (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId).NowLevel + 1).ToString();
                 if (GameManager.Instance.M_PlayerDataManager.GetWeaponInPackById(thisUpgrate.ThisUpgrateId).NowLevel <= 5)
                 {
                     thisUpgrateItemEffect.text = "+1 projectile\r\n+5 damage";
@@ -108,7 +108,7 @@ public class UpgrateButtonBehavior : MonoBehaviour
             thisUpgrateItemEffect.text = thisBuffItemUpgrate.MainEffectString;
             if (GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(thisUpgrate.ThisUpgrateId) != null)
             {
-                thisUpgrateItemLevel.text = (GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(thisUpgrate.ThisUpgrateId).NowLevel + 1).ToString();
+                thisUpgrateItemLevel.text = "LV:" + (GameManager.Instance.M_PlayerDataManager.GetUpgrateItemInPackById(thisUpgrate.ThisUpgrateId).NowLevel + 1).ToString();
             }
             else
             {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [Serializable]
 public class BasicMonsterDataTemplete
@@ -34,4 +35,10 @@ public class BasicMonsterDataTemplete
     {
 
     }   
+    public void ThisMonsterLevelChange(int level)
+    {
+        MonsterLevel = level;
+        MaxHealthPoint *= level*1.25f;
+        Now_MonsterHealthPoint *= level* 1.25f;
+    }
 }

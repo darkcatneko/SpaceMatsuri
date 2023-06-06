@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using static UnityEditor.Progress;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,15 +21,25 @@ public class EnemySpawner : MonoBehaviour
     private float monsterSpawnerTimer_ = 0;
     private int monsterInPlayableArea_ = 0;
     [Header("ObjectPools")]
-    private ObjectPoolClass monsterObjectPool;
+    private ObjectPoolClass[] monsterObjectPool = new ObjectPoolClass[6];
     private void Start()
-    {
-        monsterObjectPool = this.gameObject.AddComponent<ObjectPoolClass>();
+    {       
+        for (int i = 0; i < 6; i++)
+        {
+            monsterObjectPool[i] = this.gameObject.AddComponent<ObjectPoolClass>();
+        }
         GameManager.Instance.M_MainGameEvent.FreeGamePlayUpdateEvent.AddListener(enemySpawnerFreeGameUpdateEvent);
         GameManager.Instance.M_MainGameEvent.MonsterBeenReleaseEvent.AddListener(releaseMonster);
         GameManager.Instance.M_MainGameEvent.EnterFeverTimeEvent.AddListener(intoFeverTime);
         GameManager.Instance.M_MainGameEvent.ExitFeverTimeEvent.AddListener(outFeverTime);
         GameManager.Instance.M_MainGameEvent.FeverTimeOnUpdateEvent.AddListener(enemySpawnerFeverTimeUpdateEvent);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            monsterSpawnerTimer_ = 29;
+        }
     }
     public async Task monsterDataBaseInit()
     {
@@ -46,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void tryToChangePhase()
     {
-        if (monsterSpawnerTimer_ >= 60f)
+        if (monsterSpawnerTimer_ >= 30f)
         {
             monsterSpawnerTimer_ = 0f;
             changeSpawnerPhase();
@@ -82,36 +94,47 @@ public class EnemySpawner : MonoBehaviour
     }
     private int getARandomMonsterIdByPhase()
     {
-        var monsterPool = new List<int>();
-        if (nowSpawningDataTemplete.WillKappaSpawn) monsterPool.Add(1);
-        if (nowSpawningDataTemplete.WillKamaitachiSpawn) monsterPool.Add(2);
-        if (nowSpawningDataTemplete.WillUmbrellaSpawn) monsterPool.Add(3);
-        if (nowSpawningDataTemplete.WillYukiSpawn) monsterPool.Add(4);
-        if (nowSpawningDataTemplete.WillTenguSpawn) monsterPool.Add(5);
-        if (nowSpawningDataTemplete.WillWheelSpawn) monsterPool.Add(6);
-        var randomResult = UnityEngine.Random.Range(0, monsterPool.Count);
-        return monsterPool[randomResult];
+        var monsterPool = new List<SpawmUsedMonsterStruct>();
+        if (nowSpawningDataTemplete.WillKappaSpawn>0) monsterPool.Add(new SpawmUsedMonsterStruct(1, nowSpawningDataTemplete.WillKappaSpawn));
+        if (nowSpawningDataTemplete.WillKamaitachiSpawn > 0) monsterPool.Add(new SpawmUsedMonsterStruct(2, nowSpawningDataTemplete.WillKamaitachiSpawn));
+        if (nowSpawningDataTemplete.WillUmbrellaSpawn>0) monsterPool.Add(new SpawmUsedMonsterStruct(3, nowSpawningDataTemplete.WillUmbrellaSpawn));
+        if (nowSpawningDataTemplete.WillYukiSpawn>0) monsterPool.Add(new SpawmUsedMonsterStruct(4, nowSpawningDataTemplete.WillYukiSpawn));
+        if (nowSpawningDataTemplete.WillTenguSpawn>0) monsterPool.Add(new SpawmUsedMonsterStruct(5, nowSpawningDataTemplete.WillTenguSpawn));
+        if (nowSpawningDataTemplete.WillWheelSpawn > 0) monsterPool.Add(new SpawmUsedMonsterStruct(6, nowSpawningDataTemplete.WillWheelSpawn));
+        var randomResult = UnityEngine.Random.value;
+        foreach(var monster in monsterPool)
+        {
+            if (randomResult < monster.Chance)
+            {
+                return monster.monsterId;  // 選擇該物品
+            }
+
+            randomResult -= monster.Chance;
+        }
+        return 1;
     }
     private GameObject spawnAObjectByMonsterId(int monsterId, Vector3 position)
     {
         var monsterPrefab = monsterTempleteData.GetMonsterDataByID(monsterId).MonsterPrefab;
-        var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
-        //spawnedMonster.GetComponent<MonsterBehavior>().BeenRelease = false;
-        spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(monsterTempleteData.GetMonsterDataByID(monsterId).Clone());
+        var spawnedMonster = monsterObjectPool[monsterId-1].GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
+        var thisMonsterData = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
+        thisMonsterData.ThisMonsterLevelChange(GameManager.Instance.IngamePlayerData.PlayerLevel);
+        spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(thisMonsterData);
         var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
-        destroyer.Pool = monsterObjectPool;//加入自毀器
+        destroyer.Pool = monsterObjectPool[monsterId - 1];//加入自毀器
         monsterInPlayableArea_++;
         return spawnedMonster;
     }
     private GameObject spawnAFasterObjectByMonsterId(int monsterId, Vector3 position)
     {
         var monsterPrefab = monsterTempleteData.GetMonsterDataByID(monsterId).MonsterPrefab;
-        var spawnedMonster = monsterObjectPool.GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
-        var monsterDate = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
-        monsterDate.MonsterMovementSpeed *= 2.5f;
-        spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(monsterDate);
+        var spawnedMonster = monsterObjectPool[monsterId - 1].GetGameObject(monsterPrefab, position, Quaternion.identity);//加入物件池
+        var monsterData = monsterTempleteData.GetMonsterDataByID(monsterId).Clone();
+        monsterData.ThisMonsterLevelChange(GameManager.Instance.IngamePlayerData.PlayerLevel);
+        monsterData.MonsterMovementSpeed *= 2.5f;
+        spawnedMonster.GetComponent<MonsterBehavior>().InitMonsterData(monsterData);
         var destroyer = spawnedMonster.GetComponent<PoolObjectDestroyer>();
-        destroyer.Pool = monsterObjectPool;//加入自毀器
+        destroyer.Pool = monsterObjectPool[monsterId - 1];//加入自毀器
         monsterInPlayableArea_++;
         return spawnedMonster;
     }
@@ -119,13 +142,13 @@ public class EnemySpawner : MonoBehaviour
     {
         var RightOrLeft = (rightOrleft)UnityEngine.Random.Range(0, 2);
         var randomY = UnityEngine.Random.Range(16f, -16f);
-        var playerPositionX = GameManager.Instance.PlayerObject.transform.position.x;
+        var playerPosition = GameManager.Instance.PlayerObject.transform.position;
         switch (RightOrLeft)
         {
             case rightOrleft.right:
-                return new Vector3(32+ playerPositionX, randomY, 0);
+                return new Vector3(32+ playerPosition.x, playerPosition.y+randomY, 0);
             case rightOrleft.left:
-                return new Vector3(-32+playerPositionX, randomY, 0);
+                return new Vector3(-32+playerPosition.x, playerPosition.y+randomY, 0);
         }
         return Vector3.zero;
     }
@@ -161,5 +184,15 @@ public class EnemySpawner : MonoBehaviour
     private void releaseMonster()
     {
         monsterInPlayableArea_ -= 1;
+    }
+}
+public struct SpawmUsedMonsterStruct
+{
+    public int monsterId;
+    public float Chance;
+    public SpawmUsedMonsterStruct(int id,float chance)
+    {
+        monsterId = id;
+        Chance = chance;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MonsterBehavior : ObjectMovementAbstract
 {
+    [SerializeField]
     private BasicMonsterDataTemplete ThisMonsterData;
     public bool BeenRelease = false;
     private Vector3 getMonsterMoveDirection()

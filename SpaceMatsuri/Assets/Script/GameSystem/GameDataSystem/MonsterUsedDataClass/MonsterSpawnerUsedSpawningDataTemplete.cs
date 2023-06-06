@@ -8,12 +8,12 @@ public class MonsterSpawnerUsedSpawningDataTemplete
 {
     [field: SerializeField] public int PhaseNumber { get; set; }
     [field: SerializeField] public int MonsterShouldBeInArea { get; set; }
-    [field: SerializeField] public bool WillKappaSpawn { get; set; }
-    [field: SerializeField] public bool WillKamaitachiSpawn { get; set; }
-    [field: SerializeField] public bool WillUmbrellaSpawn { get; set; }
-    [field: SerializeField] public bool WillYukiSpawn { get; set; }
-    [field: SerializeField] public bool WillTenguSpawn { get; set; }
-    [field: SerializeField] public bool WillWheelSpawn { get; set; }
+    [field: SerializeField] public float WillKappaSpawn { get; set; }
+    [field: SerializeField] public float WillKamaitachiSpawn { get; set; }
+    [field: SerializeField] public float WillUmbrellaSpawn { get; set; }
+    [field: SerializeField] public float WillYukiSpawn { get; set; }
+    [field: SerializeField] public float WillTenguSpawn { get; set; }
+    [field: SerializeField] public float WillWheelSpawn { get; set; }
     [field: SerializeField] public int BossSpawnAmount { get; set; }
     [field: SerializeField] public int HowManyMonsterAFrame { get; set; }
     public MonsterSpawnerUsedSpawningDataTemplete()

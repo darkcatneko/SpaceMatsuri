@@ -62,7 +62,7 @@ public class MainGameUIManager : MonoBehaviour
     private void updateTenshinBar(float result)
     {
         //TensionBarUI.UpdateValue( Mathf.RoundToInt(result), 100);
-        FeverTimeTimerCircleImage.fillAmount = result / 100;
+        FeverTimeTimerCircleImage.fillAmount = result / (100 + 100 * GameManager.Instance.FeverCount);
     }
     private void enterFeverTimeUIEvent()
     {
@@ -93,6 +93,7 @@ public class MainGameUIManager : MonoBehaviour
     }
     private void comboFireFeedBack()
     {
+        ComboObject.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
         ComboObject.transform.DOPunchScale(new Vector3(0.15f, 0.15f, 1), 0.1f);
     }
     private void updateFeverTimeUIEvent()
@@ -105,6 +106,7 @@ public class MainGameUIManager : MonoBehaviour
         FeverTimeTimerCircleImage.fillAmount = 0;
         FeverTimeUIImage.sprite = FeverImage_Base;
         //FeverTimerObject.transform.DOMoveY(FeverTimeStartPosition.y, 0.35f);
+        ComboObject.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
         ComboObject.transform.DOMove(ComboStartPosition, 0.35f);
     }
     private void updateLevelText()

@@ -1,2 +1,5 @@
 Name,MonsterTemplete_ID,MonsterLevel,MonsterMovementSpeed,MaxHealthPoint,Now_MonsterHealthPoint,MonsterAttack,MonsterPrefabPath
 Kapa,1,1,5,8,8,5,Prefab/Kapa
+Katamatachi,2,1,9,22,22,8,Prefab/Katamatachi
+Umbrella,3,1,2,120,120,8,Prefab/Umbrella
+Yuki,4,1,13,8,8,20,Prefab/Yuki
