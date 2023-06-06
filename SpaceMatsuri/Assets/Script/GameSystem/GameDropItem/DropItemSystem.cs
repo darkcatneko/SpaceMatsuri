@@ -17,11 +17,16 @@ public class DropItemSystem : MonoBehaviour
     {
         GameManager.Instance.M_MainGameEvent.CallSpawnDropItem.AddListener(spawnADropItem);
     }
-    private void spawnADropItem(Vector3 spawnPosition)
+    private void spawnADropItem(Vector3 spawnPosition, float chance)
     {
         // Instantiate(tamashiPrefab_, spawnPosition, Quaternion.identity);
-        var DropItem = TamashiPool.GetGameObject(tamashiPrefab_, spawnPosition, Quaternion.identity);
-        var destroyer = DropItem.GetComponent<PoolObjectDestroyer>();
-        destroyer.Pool = TamashiPool;//加入自毀器
+        var random = Random.value;
+        if (random < chance)
+        {
+            var DropItem = TamashiPool.GetGameObject(tamashiPrefab_, spawnPosition, Quaternion.identity);
+            var destroyer = DropItem.GetComponent<PoolObjectDestroyer>();
+            destroyer.Pool = TamashiPool;//加入自毀器
+        }
+
     }
 }

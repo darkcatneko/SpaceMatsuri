@@ -16,8 +16,8 @@ public class Weapon
     [field: SerializeField] public float BasicProjectileScale { get; set; } = 1;
     [field: SerializeField] public int BasicProjectileBasicCount { get; set; } = 1;
     [field: SerializeField] public float AttackFrequence { get; set; } = 1;
-    [field: SerializeField] public GameObject WeaponPrefab { get; set; }
-    [field: SerializeField] public float NextFireTime { get; set; } = 0;
+    [field: SerializeField] public GameObject WeaponPrefab { get; set; } 
+    [field: SerializeField] public float NextFireTime { get; set; } = 1;
     [field: SerializeField] public Sprite WeaponSprite { get; set; }
     public Weapon Clone()
     {

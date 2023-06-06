@@ -23,13 +23,18 @@ public class WeaponManager : MonoBehaviour
         HanabiParticalPool = this.gameObject.AddComponent<ObjectPoolClass>();
         hanabiPrefab_ = await AddressableSearcher.GetAddressableAssetAsync<GameObject>("Prefab/HanabiTama");
         kitsunePrefab_ = await AddressableSearcher.GetAddressableAssetAsync<GameObject>("Prefab/KitsunePartical");
-    }
-    private void Start()
-    {
         GameManager.Instance.M_MainGameEvent.CallWeaponSpawn.AddListener(TrySpawnWeapon);
         GameManager.Instance.M_MainGameEvent.GameStartEvent.AddListener(TestAddWeaponToPlayer);
         GameManager.Instance.M_MainGameEvent.CallFireworkSpawnEvent.AddListener(SpawnHanabiTama);
         GameManager.Instance.M_MainGameEvent.ExitFeverTimeEvent.AddListener(callSpawnKitsunePartical);
+    }
+    private void Start()
+    {
+        Debug.Log("123");
+        //GameManager.Instance.M_MainGameEvent.CallWeaponSpawn.AddListener(TrySpawnWeapon);
+        //GameManager.Instance.M_MainGameEvent.GameStartEvent.AddListener(TestAddWeaponToPlayer);
+        //GameManager.Instance.M_MainGameEvent.CallFireworkSpawnEvent.AddListener(SpawnHanabiTama);
+        //GameManager.Instance.M_MainGameEvent.ExitFeverTimeEvent.AddListener(callSpawnKitsunePartical);
     }
     public async void TrySpawnWeapon(Weapon weapon)
     {

@@ -36,6 +36,8 @@ public class MainGameUIManager : MonoBehaviour
     [Header("PlayerLevelBar")]
     [SerializeField] Slider playerLevelBar_;
     [SerializeField] TextMeshProUGUI PlayerLevelText;
+    [Header("GameOverUI")]
+    [SerializeField] GameObject gameOverUI_;
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.TensionBarChangeEvent.AddListener(updateTenshinBar);
@@ -49,6 +51,7 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.M_MainGameEvent.PlayerLevelUpEvent.AddListener(callActivateUpgrateUI);
         GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(updateWeaponPackImageAndBuffItemImage);
         GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(callDisActiveUpgrateUI);
+        GameManager.Instance.M_MainGameEvent.PlayerGameOverEvent.AddListener(GameOver);
     }
     private void Update()
     {
@@ -139,5 +142,15 @@ public class MainGameUIManager : MonoBehaviour
             BuffItemImages[i].sprite = GameManager.Instance.M_PlayerDataManager.UpgrateItems[i].ThisUpgrateItemSprite;
         }
     }
-    
+    private void GameOver(bool IsWinning)
+    {
+        if (IsWinning)
+        {
+
+        }
+        else
+        {
+            gameOverUI_.SetActive(true);
+        }
+    }
 }

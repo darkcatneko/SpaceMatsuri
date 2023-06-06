@@ -51,7 +51,7 @@ public class MonsterBehavior : ObjectMovementAbstract
         GameManager.Instance.ChangePlayerTension(resultFeverBarValue);
         if (canDropLoot)
         {
-            GameManager.Instance.CallSpawnDropItem(gameObject.transform.position);
+            GameManager.Instance.CallSpawnDropItem(gameObject.transform.position,ThisMonsterData.DropChance);
         }
         releaseThisObject();
     }

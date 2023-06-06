@@ -81,15 +81,19 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     public void PlayerGetDamage(float damage)
     {
         IngamePlayerData.Now_PlayerHealthPoint -= damage;
+        if (IngamePlayerData.Now_PlayerHealthPoint<=0)
+        {
+            M_StageManager.TransitionState(State_Enum.Game_Over_State,StageData.GetGameOverStageData(false));
+        }
         M_MainGameEvent.PlayerGetAttackEvent.Invoke();
     }
     public void PlayerGainExperience(float amount)
     {
         M_PlayerDataManager.PlayerGainExp(amount);
     }
-    public void CallSpawnDropItem(Vector3 spawnPosition)
+    public void CallSpawnDropItem(Vector3 spawnPosition,float chance)
     {
-        M_MainGameEvent.CallSpawnDropItem.Invoke(spawnPosition);
+        M_MainGameEvent.CallSpawnDropItem.Invoke(spawnPosition,chance);
     }
     public void PlayerLevelUpEvent()
     {
@@ -99,5 +103,9 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     public void PlayerUpgrate()
     {
         M_MainGameEvent.PlayerUpgrateEvent.Invoke();
+    }
+    public void PlayerGameOver(bool IsWinning)
+    {
+        M_MainGameEvent.PlayerGameOverEvent.Invoke(IsWinning);
     }
 }

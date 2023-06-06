@@ -28,7 +28,8 @@ public class MainGameEvent
 
     public UnityEvent MonsterBeenKillByFireworkEvent = new UnityEvent();
     public UnityEvent PlayerGetAttackEvent = new UnityEvent();
-    public UnityEvent<Vector3> CallSpawnDropItem = new UnityEvent<Vector3>();
+    public UnityEvent<Vector3,float> CallSpawnDropItem = new UnityEvent<Vector3,float>();
     public UnityEvent PlayerLevelUpEvent = new UnityEvent();
     public UnityEvent PlayerUpgrateEvent = new UnityEvent();
+    public UnityEvent<bool> PlayerGameOverEvent = new UnityEvent<bool>();
 }

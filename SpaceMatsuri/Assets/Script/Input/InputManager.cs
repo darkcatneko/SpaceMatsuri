@@ -7,10 +7,12 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.FeverTimeOnUpdateEvent.AddListener(FireworkInputer);
+        GameManager.Instance.M_MainGameEvent.FreeGamePlayUpdateEvent.AddListener(movementInputer);
+        GameManager.Instance.M_MainGameEvent.FeverTimeOnUpdateEvent.AddListener(movementInputer);
     }
     void Update()
     {
-        movementInputer();
+        //movementInputer();
         if (Input.GetKeyDown(KeyCode.P))
         {
             GameManager.Instance.ChangePlayerTension(99);

@@ -55,6 +55,9 @@ public class StageManager
             case State_Enum.Game_Fever_State:
                 CurrentState = new GameFeverState(this);
                 return;
+            case State_Enum.Game_Over_State:
+                CurrentState = new GameOverState(this,stageData);
+                return;
         }
 
     }
@@ -72,11 +75,11 @@ public class StageManager
 }
 public struct StageData
 {
-    //public RaceLength RepeatableRaceType { get; set; }
+    public bool GameResult { get; set; }
 
-    //public static StageData GetRepeatStageData(RaceLength  raceType)
-    //{
-    //    return new StageData { RepeatableRaceType = raceType };
-    //}
+    public static StageData GetGameOverStageData(bool result)
+    {
+        return new StageData { GameResult = result };
+    }
 }
 

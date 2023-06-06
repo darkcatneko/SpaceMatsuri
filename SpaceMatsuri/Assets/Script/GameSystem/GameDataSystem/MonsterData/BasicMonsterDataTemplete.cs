@@ -15,6 +15,7 @@ public class BasicMonsterDataTemplete
     [field: SerializeField] public float Now_MonsterHealthPoint { get; set; }
     [field: SerializeField] public float MonsterAttack { get; set; } = 5;
     [field: SerializeField] public GameObject MonsterPrefab { get; set; }
+    [field:SerializeField] public float DropChance { get; set; }
     public BasicMonsterDataTemplete Clone()
     {
         var clone = new BasicMonsterDataTemplete()
@@ -27,6 +28,7 @@ public class BasicMonsterDataTemplete
             Now_MonsterHealthPoint = Now_MonsterHealthPoint,
             MonsterAttack = MonsterAttack,
             MonsterPrefab = MonsterPrefab,
+            DropChance = DropChance,
         };
         //要複製的東西
         return clone;
