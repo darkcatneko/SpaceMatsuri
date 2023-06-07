@@ -113,6 +113,10 @@ MonoBehaviour:
     m_Address: Prefab/Yuki
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5e1f17b42ffcd184bb8689e5072c78b0
+    m_Address: Prefab/BossKitsune
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:

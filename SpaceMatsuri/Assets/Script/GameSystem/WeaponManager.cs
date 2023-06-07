@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Unity.Mathematics;
 using UnityEngine;
@@ -38,7 +39,8 @@ public class WeaponManager : MonoBehaviour
     }
     public async void TrySpawnWeapon(Weapon weapon)
     {
-        if (Time.time>weapon.NextFireTime)
+        Debug.Log("Time" +  Time.timeSinceLevelLoad);
+        if (Time.timeSinceLevelLoad > weapon.NextFireTime)
         {
             weapon.NextFireTime += weapon.AttackFrequence*GameManager.Instance.IngamePlayerData.AttackFrequence;
             for (int i = 0; i < weapon.BasicProjectileBasicCount+GameManager.Instance.IngamePlayerData.AttackProjectileBasicCount; i++)
@@ -95,11 +97,12 @@ public class WeaponManager : MonoBehaviour
     public Transform GetANearestMonster()
     {
         var nearesrDistance = 100f;
-        var allMonster = GameObject.FindGameObjectsWithTag("Monster");
-        if (allMonster.Length>0)
+        var allMonster = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
+        if(GameObject.FindGameObjectWithTag("Boss")!=null) allMonster.Add(GameObject.FindGameObjectWithTag("Boss"));
+        if (allMonster.Count>0)
         {
             var targerTransform = allMonster[0].transform;
-            for (int i = 0; i < allMonster.Length; i++)
+            for (int i = 0; i < allMonster.Count; i++)
             {
                 if ((allMonster[i].transform.position - GameManager.Instance.PlayerObject.transform.position).magnitude < nearesrDistance)
                 {

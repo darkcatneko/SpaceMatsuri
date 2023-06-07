@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
 public class EnemySpawner : MonoBehaviour
@@ -22,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     private int monsterInPlayableArea_ = 0;
     [Header("ObjectPools")]
     private ObjectPoolClass[] monsterObjectPool = new ObjectPoolClass[6];
+    private bool isBossSpawned = false;
     private void Start()
     {       
         for (int i = 0; i < 6; i++)
@@ -160,6 +162,23 @@ public class EnemySpawner : MonoBehaviour
     {
         nowSpawnerPhase = Mathf.Clamp(nowSpawnerPhase+=1, 0, SpawnerDataBase.M_MonsterSpawningDataDataBase.Count);
         nowSpawningDataTemplete = SpawnerDataBase.GetSpawnerDataByPhase(nowSpawnerPhase);
+        if (isBossSpawned == false)
+        {
+            checkIfSpawnBoss(nowSpawningDataTemplete);
+        }
+       
+    }
+    private void checkIfSpawnBoss(MonsterSpawnerUsedSpawningDataTemplete templete)
+    {
+        if (templete.BossSpawnAmount>0)
+        {
+            var monsterPrefab = monsterTempleteData.GetMonsterDataByID(99).MonsterPrefab;
+            var monsterPosition = GameManager.Instance.PlayerObject.transform.position +new Vector3(0, 100, 0);
+            var spawnedMonster = Instantiate(monsterPrefab, monsterPosition, Quaternion.identity);
+            var thisMonsterData = monsterTempleteData.GetMonsterDataByID(99).Clone();
+            spawnedMonster.GetComponent<BossBehavior>().InitMonsterData(thisMonsterData);
+            isBossSpawned = true;
+        }
     }
     #region FeverTimeEnemySpawner
     private void intoFeverTime()

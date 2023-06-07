@@ -600,7 +600,9 @@ MonoBehaviour:
         <AttackFrequence>k__BackingField: 1
         <PlayerPrefabPath>k__BackingField: Prefab/matsuriPlayer
     <NextLevelNeededExp>k__BackingField: 0
+    WeaponPacks: []
   PlayerObject: {fileID: 0}
+  FeverCount: 0
 --- !u!1 &777911249
 GameObject:
   m_ObjectHideFlags: 0

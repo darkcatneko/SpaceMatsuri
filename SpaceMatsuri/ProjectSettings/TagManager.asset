@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Hanabi
   - DropItem
+  - Boss
   layers:
   - Default
   - TransparentFX

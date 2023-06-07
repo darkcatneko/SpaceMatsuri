@@ -44,8 +44,16 @@ public class FireworkBehavior : WeaponBehaviorBase
            var monsterInRange = FindMonsters();
         foreach (var monster in monsterInRange)
         {
-            monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999,true);
-            GameManager.Instance.MonsterBeenKilledByFirework();
+            if(monster.CompareTag("Monster"))
+            {
+                monster.GetComponent<MonsterBehavior>().ThisObjectBeenAttack(9999, true);
+                GameManager.Instance.MonsterBeenKilledByFirework();
+            }
+            else if (monster.CompareTag("Boss"))
+            {
+                monster.GetComponent<BossBehavior>().ThisObjectBeenAttack(9999, true);
+                GameManager.Instance.MonsterBeenKilledByFirework();
+            }
         }
         base.ReleaseThisObject();
     }
