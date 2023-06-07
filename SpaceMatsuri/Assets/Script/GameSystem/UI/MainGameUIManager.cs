@@ -39,6 +39,12 @@ public class MainGameUIManager : MonoBehaviour
     [Header("GameOverUI")]
     [SerializeField] GameObject gameOverUI_;
     [SerializeField] GameObject gameWinUI_;
+    #region BossUI
+    [Header("BossUI")]
+    [SerializeField] GameObject BossUIObject;
+    [SerializeField] Image BossUIBar;
+    [SerializeField] TextMeshProUGUI BossUIPercentage;
+    #endregion
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.TensionBarChangeEvent.AddListener(updateTenshinBar);
@@ -53,6 +59,8 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(updateWeaponPackImageAndBuffItemImage);
         GameManager.Instance.M_MainGameEvent.PlayerUpgrateEvent.AddListener(callDisActiveUpgrateUI);
         GameManager.Instance.M_MainGameEvent.PlayerGameOverEvent.AddListener(GameOver);
+        GameManager.Instance.M_MainGameEvent.BossSpawnEvent.AddListener(CallBossHealthActivate);
+        GameManager.Instance.M_MainGameEvent.BossHurtEvent.AddListener(bossHealthBarUpdateByPercentage);
     }
     private void Update()
     {
@@ -155,5 +163,14 @@ public class MainGameUIManager : MonoBehaviour
             Time.timeScale = 0;
             gameOverUI_.SetActive(true);
         }
+    }
+    private void CallBossHealthActivate()
+    {
+        BossUIObject.SetActive(true);
+    }
+    private void bossHealthBarUpdateByPercentage(float percentage)
+    {
+        BossUIBar.fillAmount = percentage;
+        BossUIPercentage.text = Mathf.RoundToInt(percentage*100).ToString()+"%";
     }
 }

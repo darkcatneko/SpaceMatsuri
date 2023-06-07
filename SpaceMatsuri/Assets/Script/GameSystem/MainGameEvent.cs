@@ -32,4 +32,6 @@ public class MainGameEvent
     public UnityEvent PlayerLevelUpEvent = new UnityEvent();
     public UnityEvent PlayerUpgrateEvent = new UnityEvent();
     public UnityEvent<bool> PlayerGameOverEvent = new UnityEvent<bool>();
+    public UnityEvent BossSpawnEvent = new UnityEvent();
+    public UnityEvent<float> BossHurtEvent = new UnityEvent<float>();
 }

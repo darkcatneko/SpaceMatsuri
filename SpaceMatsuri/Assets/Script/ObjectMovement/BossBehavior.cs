@@ -41,6 +41,8 @@ public class BossBehavior : ObjectMovementAbstract
         ThisMonsterData.Now_MonsterHealthPoint = ThisMonsterData.Now_MonsterHealthPoint - damage;
         //Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
         beHitEffect();
+        var percentage = ThisMonsterData.Now_MonsterHealthPoint / ThisMonsterData.MaxHealthPoint;
+        GameManager.Instance.BossGetHurt(percentage);
         if (ThisMonsterData.Now_MonsterHealthPoint <= 0)
         {
             GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Over_State,StageData.GetGameOverStageData(true));

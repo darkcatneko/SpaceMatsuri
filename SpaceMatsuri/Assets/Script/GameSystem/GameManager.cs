@@ -108,4 +108,12 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     {
         M_MainGameEvent.PlayerGameOverEvent.Invoke(IsWinning);
     }
+    public void SpawnBoss()
+    {
+        M_MainGameEvent.BossSpawnEvent.Invoke();
+    }
+    public void BossGetHurt(float percentage)
+    {
+        M_MainGameEvent.BossHurtEvent.Invoke(percentage);
+    }
 }
