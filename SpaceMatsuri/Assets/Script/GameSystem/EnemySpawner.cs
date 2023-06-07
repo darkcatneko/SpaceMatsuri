@@ -173,8 +173,9 @@ public class EnemySpawner : MonoBehaviour
         if (templete.BossSpawnAmount>0)
         {
             var monsterPrefab = monsterTempleteData.GetMonsterDataByID(99).MonsterPrefab;
-            var monsterPosition = GameManager.Instance.PlayerObject.transform.position +new Vector3(0, 100, 0);
-            var spawnedMonster = Instantiate(monsterPrefab, monsterPosition, Quaternion.identity);
+            //var monsterPosition = GameManager.Instance.PlayerObject.transform.position +new Vector3(0, 100, 0);
+            var monsterPosition = new Vector3(GameManager.Instance.PlayerObject.transform.position.x, 77, 0);
+           var spawnedMonster = Instantiate(monsterPrefab, monsterPosition, Quaternion.identity);
             var thisMonsterData = monsterTempleteData.GetMonsterDataByID(99).Clone();
             spawnedMonster.GetComponent<BossBehavior>().InitMonsterData(thisMonsterData);
             isBossSpawned = true;

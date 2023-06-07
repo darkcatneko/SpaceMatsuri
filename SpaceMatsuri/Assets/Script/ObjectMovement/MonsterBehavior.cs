@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class MonsterBehavior : ObjectMovementAbstract
@@ -55,10 +56,20 @@ public class MonsterBehavior : ObjectMovementAbstract
     public override void ThisObjectBeenAttack(float damage,bool canDropLoot)
     {
         ThisMonsterData.Now_MonsterHealthPoint = ThisMonsterData.Now_MonsterHealthPoint - damage;
+        beHitEffect();
         //Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
         if (ThisMonsterData.Now_MonsterHealthPoint <= 0)
         {
             thisMonsterBeenKill(canDropLoot);
+        }
+    }
+    private async void beHitEffect()
+    {
+        thisObject_.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1);
+        await Task.Delay(100);
+        if (thisObject_!=null)
+        {
+            thisObject_.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0);
         }
     }
     private void thisMonsterBeenKill(bool canDropLoot)

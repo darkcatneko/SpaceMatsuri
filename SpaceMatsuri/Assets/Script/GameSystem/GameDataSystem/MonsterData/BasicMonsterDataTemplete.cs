@@ -40,7 +40,7 @@ public class BasicMonsterDataTemplete
     public void ThisMonsterLevelChange(int level)
     {
         MonsterLevel = level;
-        MaxHealthPoint *= level*1.25f;
-        Now_MonsterHealthPoint *= level* 1.25f;
+        MaxHealthPoint *= level*0.5f;
+        Now_MonsterHealthPoint *= level* 0.5f;
     }
 }

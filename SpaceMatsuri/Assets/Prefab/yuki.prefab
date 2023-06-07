@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b0f6216abaf410e40bb32946871e3d93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,9 @@ MonoBehaviour:
     <Now_MonsterHealthPoint>k__BackingField: 0
     <MonsterAttack>k__BackingField: 5
     <MonsterPrefab>k__BackingField: {fileID: 0}
+    <DropChance>k__BackingField: 0
   BeenRelease: 0
+  Faceleft: 1
 --- !u!114 &2451655120543592881
 MonoBehaviour:
   m_ObjectHideFlags: 0

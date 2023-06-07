@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BossBehavior : ObjectMovementAbstract
@@ -39,10 +40,18 @@ public class BossBehavior : ObjectMovementAbstract
     {
         ThisMonsterData.Now_MonsterHealthPoint = ThisMonsterData.Now_MonsterHealthPoint - damage;
         //Debug.Log("Left  " + ThisMonsterData.Now_MonsterHealthPoint);
+        beHitEffect();
         if (ThisMonsterData.Now_MonsterHealthPoint <= 0)
         {
+            GameManager.Instance.M_StageManager.TransitionState(State_Enum.Game_Over_State,StageData.GetGameOverStageData(true));
             Debug.Log("BossKilled!!");
         }
+    }
+    private async void beHitEffect()
+    {
+        thisObject_.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 1);
+        await Task.Delay(100);
+        thisObject_.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -69,6 +78,7 @@ public class BossBehavior : ObjectMovementAbstract
             //ThisObjectBeenAttack(ThisMonsterData.Now_MonsterHealthPoint, true);
         }
     }
+
     public void InitMonsterData(BasicMonsterDataTemplete target)
     {
         BeenRelease = false;

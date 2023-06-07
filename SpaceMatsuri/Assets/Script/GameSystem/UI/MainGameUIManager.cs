@@ -38,6 +38,7 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI PlayerLevelText;
     [Header("GameOverUI")]
     [SerializeField] GameObject gameOverUI_;
+    [SerializeField] GameObject gameWinUI_;
     private void Start()
     {
         GameManager.Instance.M_MainGameEvent.TensionBarChangeEvent.AddListener(updateTenshinBar);
@@ -146,10 +147,12 @@ public class MainGameUIManager : MonoBehaviour
     {
         if (IsWinning)
         {
-
+            Time.timeScale = 0;
+            gameWinUI_.SetActive(true);
         }
         else
         {
+            Time.timeScale = 0;
             gameOverUI_.SetActive(true);
         }
     }
