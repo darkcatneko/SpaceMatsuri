@@ -111,7 +111,7 @@ public class MonsterBehavior : ObjectMovementAbstract
         {
             Debug.Log("PlayerBeHit  " + ThisMonsterData.MonsterAttack);
             GameManager.Instance.PlayerGetDamage(ThisMonsterData.MonsterAttack);
-            ThisObjectBeenAttack(ThisMonsterData.MonsterAttack, true);
+            ThisObjectBeenAttack(ThisMonsterData.MaxHealthPoint, true);
             //ThisObjectBeenAttack(ThisMonsterData.Now_MonsterHealthPoint, true);
         }
     }
