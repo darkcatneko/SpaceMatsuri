@@ -64,6 +64,11 @@ public class CSVClassGenerator
                 var sprite = await AddressableSearcher.GetAddressableAssetAsync<Sprite>(dataText[i]);
                 propertyInfo[i].SetValue(DataBeSet, sprite);
             }
+            else if (propertyInfo[i].PropertyType == typeof(AudioClip))
+            {
+                var audio = await AddressableSearcher.GetAddressableAssetAsync<AudioClip>(dataText[i]);
+                propertyInfo[i].SetValue(DataBeSet, audio);
+            }
         }
     }
 }

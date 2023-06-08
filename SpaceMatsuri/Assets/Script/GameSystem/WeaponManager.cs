@@ -43,6 +43,7 @@ public class WeaponManager : MonoBehaviour
         if (Time.timeSinceLevelLoad > weapon.NextFireTime)
         {
             weapon.NextFireTime += weapon.AttackFrequence*GameManager.Instance.IngamePlayerData.AttackFrequence;
+            GameManager.Instance.FireWeapon(3);
             for (int i = 0; i < weapon.BasicProjectileBasicCount+GameManager.Instance.IngamePlayerData.AttackProjectileBasicCount; i++)
             {
                 SpawnWeapon(weapon);
@@ -62,6 +63,7 @@ public class WeaponManager : MonoBehaviour
     }
     public void SpawnWaterGun(Weapon weapon,Vector3 originPoint)
     {
+        
         var waterGunPrefab = weapon.WeaponPrefab;
         //var thisWeaponBasicData = weaponDataBase.GetWeaponByID(1).Clone();
         var thisWeaponBasicData = weapon.Clone();

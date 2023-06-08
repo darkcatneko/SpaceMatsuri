@@ -77,6 +77,13 @@ public class PlayerDataManager
         }
         return null;
     }
+    public void UpdateWeaponNextFireTime()
+    {
+        for (int i = 0; i < WeaponPacks.Count; i++)
+        {
+            WeaponPacks[i].NextFireTime = Time.timeSinceLevelLoad;
+        }
+    }
     public UpgrateItem GetUpgrateItemInPackById(int id)
     {
         for (int i = 0; i < UpgrateItems.Count; i++)

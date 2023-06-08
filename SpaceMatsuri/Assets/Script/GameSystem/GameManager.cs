@@ -116,4 +116,8 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     {
         M_MainGameEvent.BossHurtEvent.Invoke(percentage);
     }
+    public void FireWeapon(int id)
+    {
+        M_MainGameEvent.WeaponSuccessFireEvent.Invoke(id);
+    }
 }

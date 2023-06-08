@@ -1,0 +1,6 @@
+Name,Id,ClipAddress
+BossEnter,0,SoundEffect/BossEnter
+FeverEnd,1,SoundEffect/FeverEnd
+Firework,2,SoundEffect/Firework
+WaterGun,3,SoundEffect/WaterGun
+FireworkBG,4,SoundEffect/FireworkBG

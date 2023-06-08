@@ -117,6 +117,30 @@ MonoBehaviour:
     m_Address: Prefab/BossKitsune
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 00e8b6598755c4f4e88cc1eb148f1a3e
+    m_Address: Excel/SpaceMatsuriSoundEffectSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7e40e041078fc8c4cb17458376f4fa91
+    m_Address: SoundEffect/FeverEnd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f6a3c1280cf95084b818e35dfbb68ff8
+    m_Address: SoundEffect/Firework
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0c799142234afb44494446605d1f517b
+    m_Address: SoundEffect/WaterGun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46fc0591f2db22f4787a3eeb02df446a
+    m_Address: SoundEffect/BossEnter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 990239ee011828c488f7e5081c0c9595
+    m_Address: SoundEffect/FireworkBG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e586caffb569be84ca14ec760e10c338, type: 2}
   m_SchemaSet:

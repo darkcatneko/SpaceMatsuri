@@ -22,6 +22,7 @@ public class GameFeverState : StateBase
         excuteAllMonster();
         excuteAllDropItem();
         GameManager.Instance.ChangePlayerTension(0);
+        GameManager.Instance.M_PlayerDataManager.UpdateWeaponNextFireTime();
         //Debug.Log("Out Fever");
         GameManager.Instance.ExitFeverTime();
     }

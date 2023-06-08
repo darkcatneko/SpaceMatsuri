@@ -34,4 +34,5 @@ public class MainGameEvent
     public UnityEvent<bool> PlayerGameOverEvent = new UnityEvent<bool>();
     public UnityEvent BossSpawnEvent = new UnityEvent();
     public UnityEvent<float> BossHurtEvent = new UnityEvent<float>();
+    public UnityEvent<int> WeaponSuccessFireEvent = new UnityEvent<int>();
 }

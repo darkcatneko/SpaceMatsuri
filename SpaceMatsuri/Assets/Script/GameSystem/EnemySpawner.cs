@@ -6,7 +6,6 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class EnemySpawner : MonoBehaviour
 {
