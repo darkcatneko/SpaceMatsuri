@@ -21,8 +21,8 @@ public class MonsterBehavior : ObjectMovementAbstract
         ThisObjectMove(getMonsterMoveDirection(), ThisMonsterData.MonsterMovementSpeed);
         flip();
         var thisPosition = this.gameObject.transform.position;
-        var playerpPosition = GameManager.Instance.PlayerObject.transform.position;
-        var distance = (thisPosition - playerpPosition).magnitude;
+        var playerPosition = GameManager.Instance.PlayerObject.transform.position;
+        var distance = (thisPosition - playerPosition).magnitude;
         if (distance>50f)
         {
             releaseThisObject();
@@ -99,11 +99,7 @@ public class MonsterBehavior : ObjectMovementAbstract
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    Debug.Log("PlayerBeHit  " + ThisMonsterData.MonsterAttack);
-        //    ThisObjectBeenAttack(ThisMonsterData.Now_MonsterHealthPoint, true);
-        //}
+
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
