@@ -37,7 +37,6 @@ public class ObjectPoolClass : MonoBehaviour
         Transform transform = obj.transform;
         transform.position = position;
         transform.rotation = rotation;
-
         return obj;
     }
 

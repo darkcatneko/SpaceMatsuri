@@ -23,6 +23,8 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     void Update()
     {
         M_StageManager.StageManagerUpdate();
+
+        //所有state都可以吃到的背景
     }
     #region  GameEvents
     public void GameInit()
